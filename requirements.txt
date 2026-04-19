@@ -1,0 +1,7 @@
+polygon-api-client
+mplfinance
+pandas
+matplotlib
+requests
+python-dotenv
+Pillow
