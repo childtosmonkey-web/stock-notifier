@@ -2,6 +2,8 @@
 
 import os
 import matplotlib
+if os.environ.get("MPLBACKEND") == "Agg" or not os.environ.get("DISPLAY"):
+    matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 import mplfinance as mpf
