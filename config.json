@@ -1,7 +1,10 @@
 {
   "tickers": [
     "IONQ",
-    "SOFI"
+    "SOFI",
+    "RKLB",
+    "NBIS",
+    "IREN"
   ],
   "chart_days": 30,
   "notify_hour": 8,
