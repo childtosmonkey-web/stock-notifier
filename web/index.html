@@ -7,7 +7,15 @@
   <link rel="manifest" href="/web/manifest.json">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://unpkg.com/alpinejs@3/dist/cdn.min.js" defer></script>
+  <style>
+    .report-body h3 { font-size: 0.95rem; font-weight: 700; margin-top: 1rem; margin-bottom: 0.4rem; color: #e5e7eb; }
+    .report-body p  { margin-bottom: 0.5rem; line-height: 1.6; color: #d1d5db; }
+    .report-body ul { list-style: disc; padding-left: 1.4rem; margin-bottom: 0.5rem; }
+    .report-body li { margin-bottom: 0.25rem; color: #d1d5db; line-height: 1.5; }
+    .report-body strong { font-weight: 600; color: #f3f4f6; }
+  </style>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen" x-data="app()" x-init="init()">
 
@@ -134,6 +142,24 @@
       <div x-show="!stocksLoading && stocks.length === 0"
         class="text-center py-10 text-gray-500 text-sm">
         <p>⚙️ 設定から監視銘柄を追加してください</p>
+      </div>
+
+      <!-- デイリーレポート -->
+      <div x-show="report" class="mb-4 bg-gray-800 rounded-2xl overflow-hidden">
+        <button @click="reportOpen = !reportOpen"
+          class="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-700/50 transition">
+          <div class="flex items-center gap-2">
+            <span class="text-base font-bold">📰 デイリーレポート</span>
+            <span x-show="reportDate" x-text="reportDate"
+              class="text-xs text-gray-400 bg-gray-700 px-2 py-0.5 rounded-full"></span>
+          </div>
+          <svg class="w-4 h-4 text-gray-400 transition-transform" :class="reportOpen ? 'rotate-180' : ''"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <div x-show="reportOpen" class="px-4 pb-4 text-sm report-body"
+          x-html="report ? marked.parse(report) : ''"></div>
       </div>
 
       <!-- 銘柄カードグリッド：モバイル1列・デスクトップ2列 -->
@@ -335,6 +361,9 @@
         savingHour: false,
         settingsOpen: false,
         isDesktop: window.matchMedia('(min-width: 768px)').matches,
+        report: null,
+        reportDate: '',
+        reportOpen: true,
         pushEnabled: false,
         pushStatus: '通知オフ',
         saving: false,
@@ -364,7 +393,18 @@
           if (sub) { this.pushEnabled = true; this.pushStatus = '通知オン'; }
 
           await this.loadConfig();
-          await this.loadStocks();
+          await Promise.all([this.loadStocks(), this.loadReport()]);
+        },
+
+        async loadReport() {
+          try {
+            const res = await fetch('/api/report');
+            const data = await res.json();
+            if (data.report) {
+              this.report = data.report;
+              this.reportDate = data.date || '';
+            }
+          } catch(e) {}
         },
 
         async loadConfig() {

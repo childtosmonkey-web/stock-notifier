@@ -15,6 +15,7 @@ from fetcher import get_stock_data, get_ohlcv_for_chart
 from chart import generate_chart
 from notifier import upload_to_github
 from web_push import send_stock_push
+from news import fetch_ticker_news, analyze_with_claude, save_report_to_github
 
 
 def load_config() -> dict:
@@ -61,6 +62,32 @@ def main():
 
         except Exception as e:
             print(f"  {ticker}: エラー - {e}", file=sys.stderr)
+
+    # ニュース取得とAIレポート生成
+    polygon_key = os.environ.get("POLYGON_API_KEY", "")
+    anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    if anthropic_key and polygon_key and results:
+        print("ニュースを取得中...")
+        news_by_ticker: dict = {}
+        for ticker in tickers:
+            articles = fetch_ticker_news(ticker, polygon_key)
+            news_by_ticker[ticker] = articles
+            print(f"  {ticker}: {len(articles)}件のニュース取得")
+            time.sleep(13)  # Polygon レート制限対策
+
+        print("Claude APIで分析中...")
+        stocks_for_analysis = [r["stock"] for r in results]
+        report_text = analyze_with_claude(stocks_for_analysis, news_by_ticker)
+
+        try:
+            github_token = os.environ.get("GITHUB_TOKEN", "")
+            github_username = os.environ.get("GITHUB_USERNAME", "childtosmonkey-web")
+            save_report_to_github(report_text, tickers, github_token, github_username)
+            print("レポートをGitHubに保存しました")
+        except Exception as e:
+            print(f"レポート保存エラー: {e}", file=sys.stderr)
+    else:
+        print("ANTHROPIC_API_KEY 未設定のためレポート生成をスキップ")
 
     if subscription and results:
         for r in results:

@@ -8,3 +8,4 @@ Pillow
 fastapi
 uvicorn[standard]
 pywebpush
+anthropic

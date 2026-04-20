@@ -19,11 +19,13 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 GITHUB_USERNAME = os.environ.get("GITHUB_USERNAME", "childtosmonkey-web")
 GITHUB_REPO = "stock-notifier"
 CONFIG_PATH = "config.json"
+REPORT_PATH = "daily_report.json"
 VAPID_PUBLIC_KEY = os.environ.get("VAPID_PUBLIC_KEY", "")
 POLYGON_API_KEY = os.environ.get("POLYGON_API_KEY", "")
 
 GH_HEADERS = {"Authorization": f"token {GITHUB_TOKEN}"}
 CONFIG_API_URL = f"https://api.github.com/repos/{GITHUB_USERNAME}/{GITHUB_REPO}/contents/{CONFIG_PATH}"
+REPORT_API_URL = f"https://api.github.com/repos/{GITHUB_USERNAME}/{GITHUB_REPO}/contents/{REPORT_PATH}"
 
 
 def _get_remote_config() -> tuple[dict, str]:
@@ -57,6 +59,9 @@ def service_worker():
 
 _chart_cache: dict = {}
 _CHART_TTL = 300
+
+_report_cache: dict = {"ts": 0, "data": None}
+_REPORT_CACHE_TTL = 1800  # 30分
 
 _stocks_cache: dict = {"ts": 0, "data": {}}
 _CACHE_TTL = 300  # 5分キャッシュ
@@ -187,6 +192,25 @@ def search_tickers(q: str = ""):
 @app.get("/api/vapid-public-key")
 def get_vapid_public_key():
     return {"key": VAPID_PUBLIC_KEY}
+
+
+@app.get("/api/report")
+def get_report():
+    """デイリーレポートを返す（30分キャッシュ）"""
+    import time
+    now = time.time()
+    if now - _report_cache["ts"] < _REPORT_CACHE_TTL and _report_cache["data"] is not None:
+        return _report_cache["data"]
+    try:
+        r = requests.get(REPORT_API_URL, headers=GH_HEADERS, timeout=10)
+        if not r.ok:
+            return {"report": None, "date": None, "tickers": []}
+        data = json.loads(base64.b64decode(r.json()["content"]).decode())
+        _report_cache["ts"] = now
+        _report_cache["data"] = data
+        return data
+    except Exception:
+        return {"report": None, "date": None, "tickers": []}
 
 
 @app.get("/api/config")
