@@ -33,18 +33,19 @@ def fetch_ticker_news(ticker: str, api_key: str, hours: int = 24) -> list[dict]:
     return []
 
 
-def analyze_with_claude(stocks: list[dict], news_by_ticker: dict[str, list]) -> str:
-    """Claude APIで株価とニュースを分析・要約してレポートを生成"""
+def analyze_with_gemini(stocks: list[dict], news_by_ticker: dict[str, list]) -> str:
+    """Gemini APIで株価とニュースを分析・要約してレポートを生成"""
     try:
-        import anthropic
+        import google.generativeai as genai
     except ImportError:
-        return "anthropicパッケージが未インストールです"
+        return "google-generativeaiパッケージが未インストールです"
 
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        return "ANTHROPIC_API_KEY が未設定です"
+        return "GEMINI_API_KEY が未設定です"
 
-    client = anthropic.Anthropic(api_key=api_key)
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel("gemini-1.5-flash")
 
     # 株価サマリー
     stocks_lines = []
@@ -100,12 +101,8 @@ def analyze_with_claude(stocks: list[dict], news_by_ticker: dict[str, list]) -> 
 
 株価変動とニュースの因果関係を具体的に説明してください。ニュースがない銘柄は市場全体の動向から推察してください。"""
 
-    message = client.messages.create(
-        model="claude-haiku-4-5-20251001",
-        max_tokens=1800,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return message.content[0].text
+    response = model.generate_content(prompt)
+    return response.text
 
 
 def save_report_to_github(
