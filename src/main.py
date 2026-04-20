@@ -23,7 +23,18 @@ def load_config() -> dict:
 
 
 def main():
+    import datetime, zoneinfo
     config = load_config()
+
+    # スケジュール実行時（workflow_dispatch以外）は時刻チェック
+    if os.environ.get("SCHEDULED_RUN") == "1":
+        jst = zoneinfo.ZoneInfo("Asia/Tokyo")
+        current_hour = datetime.datetime.now(jst).hour
+        notify_hour = config.get("notify_hour", 8)
+        if current_hour != notify_hour:
+            print(f"現在 {current_hour} 時 / 通知設定 {notify_hour} 時 → スキップ")
+            return
+
     tickers = config["tickers"]
     chart_days = config.get("chart_days", 30)
     subscription = config.get("push_subscription")

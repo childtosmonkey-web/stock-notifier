@@ -20,6 +20,7 @@ GITHUB_USERNAME = os.environ.get("GITHUB_USERNAME", "childtosmonkey-web")
 GITHUB_REPO = "stock-notifier"
 CONFIG_PATH = "config.json"
 VAPID_PUBLIC_KEY = os.environ.get("VAPID_PUBLIC_KEY", "")
+POLYGON_API_KEY = os.environ.get("POLYGON_API_KEY", "")
 
 GH_HEADERS = {"Authorization": f"token {GITHUB_TOKEN}"}
 CONFIG_API_URL = f"https://api.github.com/repos/{GITHUB_USERNAME}/{GITHUB_REPO}/contents/{CONFIG_PATH}"
@@ -54,6 +55,35 @@ def service_worker():
     return FileResponse("web/sw.js", media_type="application/javascript")
 
 
+@app.get("/api/search")
+def search_tickers(q: str = ""):
+    """ティッカー・英語社名で検索して候補を返す。"""
+    q = q.strip()
+    if not q:
+        return {"results": []}
+
+    results: list[dict] = []
+    if POLYGON_API_KEY:
+        try:
+            r = requests.get(
+                "https://api.polygon.io/v3/reference/tickers",
+                params={"search": q, "active": "true", "market": "stocks", "limit": 15, "apiKey": POLYGON_API_KEY},
+                timeout=5,
+            )
+            if r.ok:
+                items = r.json().get("results", [])
+                q_upper = q.upper()
+                # ティッカー完全一致を先頭に並べる
+                exact = [i for i in items if i.get("ticker", "").upper() == q_upper]
+                others = [i for i in items if i.get("ticker", "").upper() != q_upper]
+                for item in exact + others:
+                    results.append({"ticker": item.get("ticker", ""), "name": item.get("name", "")})
+        except Exception:
+            pass
+
+    return {"results": results[:15]}
+
+
 @app.get("/api/vapid-public-key")
 def get_vapid_public_key():
     return {"key": VAPID_PUBLIC_KEY}
@@ -78,6 +108,20 @@ def update_tickers(body: TickerUpdate):
     config["tickers"] = tickers
     _save_remote_config(config, sha)
     return {"tickers": tickers}
+
+
+class NotifyHourUpdate(BaseModel):
+    notify_hour: int
+
+
+@app.put("/api/config/notify-hour")
+def update_notify_hour(body: NotifyHourUpdate):
+    if not 0 <= body.notify_hour <= 23:
+        raise HTTPException(status_code=400, detail="時刻は0〜23で指定してください")
+    config, sha = _get_remote_config()
+    config["notify_hour"] = body.notify_hour
+    _save_remote_config(config, sha)
+    return {"notify_hour": body.notify_hour}
 
 
 class SubscribeBody(BaseModel):

@@ -43,16 +43,48 @@
       </div>
 
       <!-- 銘柄追加 -->
-      <div class="flex gap-2 pt-1">
-        <input x-model="newTicker" @keyup.enter="addTicker()"
-          type="text" placeholder="例: AAPL"
-          class="flex-1 bg-gray-700 rounded-lg px-3 py-2 text-sm font-mono uppercase
-                 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          :disabled="saving">
-        <button @click="addTicker()" :disabled="saving || !newTicker.trim()"
-          class="bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
-          追加
-        </button>
+      <div class="relative pt-1" @click.outside="suggestions = []">
+        <div class="flex gap-2">
+          <input x-model="newTicker"
+            @input.debounce.300ms="searchTickers()"
+            @keyup.enter="addTicker()"
+            @keydown.escape="suggestions = []"
+            @keydown.arrow-down.prevent="focusSuggestion(0)"
+            type="text" placeholder="例: AAPL / アップル"
+            class="flex-1 bg-gray-700 rounded-lg px-3 py-2 text-sm
+                   focus:outline-none focus:ring-2 focus:ring-blue-500"
+            :disabled="saving">
+          <button @click="addTicker()" :disabled="saving || !newTicker.trim()"
+            class="bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+            追加
+          </button>
+        </div>
+        <!-- 候補リスト -->
+        <div x-show="suggestions.length > 0"
+          class="absolute z-10 w-full mt-1 bg-gray-700 rounded-lg shadow-xl overflow-hidden">
+          <template x-for="(s, i) in suggestions" :key="s.ticker">
+            <button @click="selectSuggestion(s)"
+              class="w-full flex items-center gap-3 px-3 py-2 hover:bg-gray-600 text-left transition">
+              <span class="font-mono font-bold text-green-400 w-16 shrink-0" x-text="s.ticker"></span>
+              <span class="text-sm text-gray-300 truncate" x-text="s.name"></span>
+            </button>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <!-- 通知時刻 -->
+    <div class="bg-gray-800 rounded-xl p-4 space-y-3">
+      <h2 class="font-semibold text-gray-200">通知時刻</h2>
+      <div class="flex items-center gap-3">
+        <select x-model.number="notifyHour" @change="saveNotifyHour()"
+          class="bg-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <template x-for="h in Array.from({length: 24}, (_, i) => i)" :key="h">
+            <option :value="h" x-text="`${String(h).padStart(2,'0')}:00`"></option>
+          </template>
+        </select>
+        <span class="text-sm text-gray-400">毎日この時刻に通知</span>
+        <span x-show="savingHour" class="text-xs text-blue-400">保存中…</span>
       </div>
     </div>
 
@@ -87,6 +119,9 @@
       return {
         tickers: [],
         newTicker: '',
+        suggestions: [],
+        notifyHour: 8,
+        savingHour: false,
         pushEnabled: false,
         pushStatus: '通知オフ',
         saving: false,
@@ -118,6 +153,48 @@
           const res = await fetch('/api/config');
           const data = await res.json();
           this.tickers = data.tickers || [];
+          this.notifyHour = data.notify_hour ?? 8;
+        },
+
+        async saveNotifyHour() {
+          this.savingHour = true;
+          try {
+            const res = await fetch('/api/config/notify-hour', {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ notify_hour: this.notifyHour }),
+            });
+            if (!res.ok) throw new Error(await res.text());
+            this.showMessage(`通知時刻を ${String(this.notifyHour).padStart(2,'0')}:00 に設定しました`, true);
+          } catch(e) {
+            this.showMessage('保存に失敗しました: ' + e.message, false);
+          } finally {
+            this.savingHour = false;
+          }
+        },
+
+        async searchTickers() {
+          const q = this.newTicker.trim();
+          if (!q) { this.suggestions = []; return; }
+          try {
+            const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+            const data = await res.json();
+            this.suggestions = data.results || [];
+          } catch(e) { this.suggestions = []; }
+        },
+
+
+        selectSuggestion(s) {
+          this.newTicker = s.ticker;
+          this.suggestions = [];
+          this.addTicker();
+        },
+
+        focusSuggestion(i) {
+          this.$nextTick(() => {
+            const btns = this.$el.querySelectorAll('[x-for] button');
+            if (btns[i]) btns[i].focus();
+          });
         },
 
         addTicker() {
@@ -126,6 +203,7 @@
             this.tickers.push(t);
           }
           this.newTicker = '';
+          this.suggestions = [];
         },
 
         removeTicker(ticker) {

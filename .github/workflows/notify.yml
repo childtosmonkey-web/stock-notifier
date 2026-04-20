@@ -2,7 +2,7 @@ name: Daily Stock Notification
 
 on:
   schedule:
-    - cron: '0 23 * * *'  # 毎朝8:00 JST (= UTC 23:00 前日)
+    - cron: '0 * * * *'   # 毎時実行、main.pyが設定時刻と照合
   workflow_dispatch:       # 手動実行ボタンも有効化
 
 jobs:
@@ -31,4 +31,5 @@ jobs:
           VAPID_PUBLIC_KEY: ${{ secrets.VAPID_PUBLIC_KEY }}
           VAPID_CLAIMS_EMAIL: ${{ secrets.VAPID_CLAIMS_EMAIL }}
           MPLBACKEND: Agg
+          SCHEDULED_RUN: ${{ github.event_name == 'schedule' && '1' || '0' }}
         run: python src/main.py
