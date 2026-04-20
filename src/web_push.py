@@ -35,6 +35,10 @@ def send_stock_push(subscription: dict, stock_data: dict, chart_url: str | None 
         "body": f"現在値: ${price:.2f}　前日比: {change:+.2f}",
         "image": chart_url,
         "ticker": ticker,
+        "price": price,
+        "change_pct": change_pct,
+        "change": change,
+        "chart_url": chart_url or "",
     }
 
     send_web_push(subscription, payload)
