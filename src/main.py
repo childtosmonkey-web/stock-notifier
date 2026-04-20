@@ -67,25 +67,25 @@ def main():
     polygon_key = os.environ.get("POLYGON_API_KEY", "")
     gemini_key = os.environ.get("GEMINI_API_KEY", "")
     if gemini_key and polygon_key and results:
-        print("ニュースを取得中...")
-        news_by_ticker: dict = {}
-        for ticker in tickers:
-            articles = fetch_ticker_news(ticker, polygon_key)
-            news_by_ticker[ticker] = articles
-            print(f"  {ticker}: {len(articles)}件のニュース取得")
-            time.sleep(13)  # Polygon レート制限対策
-
-        print("Gemini APIで分析中...")
-        stocks_for_analysis = [r["stock"] for r in results]
-        report_text = analyze_with_gemini(stocks_for_analysis, news_by_ticker)
-
         try:
+            print("ニュースを取得中...")
+            news_by_ticker: dict = {}
+            for ticker in tickers:
+                articles = fetch_ticker_news(ticker, polygon_key)
+                news_by_ticker[ticker] = articles
+                print(f"  {ticker}: {len(articles)}件のニュース取得")
+                time.sleep(13)  # Polygon レート制限対策
+
+            print("Gemini APIで分析中...")
+            stocks_for_analysis = [r["stock"] for r in results]
+            report_text = analyze_with_gemini(stocks_for_analysis, news_by_ticker)
+
             github_token = os.environ.get("GITHUB_TOKEN", "")
             github_username = os.environ.get("GITHUB_USERNAME", "childtosmonkey-web")
             save_report_to_github(report_text, tickers, github_token, github_username)
             print("レポートをGitHubに保存しました")
         except Exception as e:
-            print(f"レポート保存エラー: {e}", file=sys.stderr)
+            print(f"レポート生成エラー（通知は続行）: {e}", file=sys.stderr)
     else:
         print("GEMINI_API_KEY 未設定のためレポート生成をスキップ")
 

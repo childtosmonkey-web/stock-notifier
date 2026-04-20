@@ -45,7 +45,7 @@ def analyze_with_gemini(stocks: list[dict], news_by_ticker: dict[str, list]) -> 
         return "GEMINI_API_KEY が未設定です"
 
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-2.0-flash")
 
     # 株価サマリー
     stocks_lines = []
