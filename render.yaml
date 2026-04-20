@@ -9,6 +9,8 @@ services:
         value: 3.12.0
       - key: GITHUB_TOKEN
         sync: false
+      - key: POLYGON_API_KEY
+        sync: false
       - key: GITHUB_USERNAME
         value: childtosmonkey-web
       - key: VAPID_PRIVATE_KEY
