@@ -206,16 +206,25 @@
     // Alpine の外でチャートインスタンスを管理（リアクティブ化を回避）
     const _chartStore = new Map(); // ticker -> { chart, series, allBars }
 
+    // bars -> {time, value} 形式に変換（Alpine reactive proxy を剥がした plain object）
+    function toBars(rawBars) {
+      return (rawBars || []).map(b => ({ time: b.time, value: b.close }));
+    }
+
+    const _ticker = ticker => String(ticker); // Map キーを確実に plain string に
+
     function stockCard(stockData) {
+      const ticker = String(stockData.ticker); // plain string（reactive proxy 外）
       return {
         s: stockData,
+        ticker,
         period: '1m',
         chartLoading: false,
         noData: false,
         hoverPrice: null,
         hoverDate: '',
 
-        _inst() { return _chartStore.get(this.s.ticker); },
+        _inst() { return _chartStore.get(ticker); },
 
         async initChart(el) {
           const chart = LightweightCharts.createChart(el, {
@@ -225,24 +234,30 @@
             crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
             rightPriceScale: { borderColor: '#374151' },
             timeScale: { borderColor: '#374151', timeVisible: true, secondsVisible: false },
+            handleScroll: { mouseWheel: false },
           });
-          const series = chart.addCandlestickSeries({
-            upColor: '#22c55e', downColor: '#ef4444',
-            borderVisible: false,
-            wickUpColor: '#22c55e', wickDownColor: '#ef4444',
+          const series = chart.addAreaSeries({
+            lineColor: '#3b82f6',
+            topColor: 'rgba(59,130,246,0.3)',
+            bottomColor: 'rgba(59,130,246,0.02)',
+            lineWidth: 2,
+            crosshairMarkerVisible: true,
+            crosshairMarkerRadius: 4,
+            priceLineVisible: false,
           });
-          const allBars = (stockData.bars || []);
-          _chartStore.set(stockData.ticker, { chart, series, allBars });
+          // Alpine reactive proxy を剥がして plain array に
+          const allBars = toBars(stockData.bars);
+          _chartStore.set(ticker, { chart, series, allBars });
 
           const self = this;
           chart.subscribeCrosshairMove(param => {
-            const inst = _chartStore.get(self.s.ticker);
+            const inst = _chartStore.get(ticker);
             if (!param.time || !inst || !param.seriesData.has(inst.series)) {
               self.hoverPrice = null; self.hoverDate = '';
               return;
             }
             const d = param.seriesData.get(inst.series);
-            self.hoverPrice = d.close;
+            self.hoverPrice = d.value;
             const dt = new Date(param.time * 1000);
             self.hoverDate = dt.toLocaleString('ja-JP', {
               month: 'numeric', day: 'numeric',
@@ -267,10 +282,8 @@
           const inst = this._inst();
           if (!inst) return;
           this.noData = bars.length === 0;
-          if (bars.length > 0) {
-            inst.series.setData(bars);
-            inst.chart.timeScale().fitContent();
-          }
+          inst.series.setData(bars);
+          if (bars.length > 0) inst.chart.timeScale().fitContent();
         },
 
         async changePeriod(p) {
@@ -288,14 +301,12 @@
           this.chartLoading = true;
           this.noData = false;
           try {
-            const res = await fetch(`/api/chart/${this.s.ticker}?period=${this.period}`);
+            const res = await fetch(`/api/chart/${ticker}?period=${this.period}`);
             const data = await res.json();
-            const bars = data.bars || [];
+            const bars = toBars(data.bars);
             this.noData = bars.length === 0;
-            if (bars.length > 0) {
-              inst.series.setData(bars);
-              inst.chart.timeScale().fitContent();
-            }
+            inst.series.setData(bars);
+            if (bars.length > 0) inst.chart.timeScale().fitContent();
           } catch(e) { this.noData = true; }
           finally { this.chartLoading = false; }
         },
