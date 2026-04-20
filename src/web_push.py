@@ -2,7 +2,6 @@
 
 import os
 import json
-import base64
 from pywebpush import webpush, WebPushException
 
 
@@ -14,13 +13,10 @@ def send_web_push(subscription: dict, payload: dict) -> None:
     if not vapid_private_key_b64:
         raise ValueError("VAPID_PRIVATE_KEY が設定されていません")
 
-    # .env に保存された base64 エンコード済み PEM を復元する
-    vapid_private_key = base64.urlsafe_b64decode(vapid_private_key_b64).decode()
-
     webpush(
         subscription_info=subscription,
         data=json.dumps(payload),
-        vapid_private_key=vapid_private_key,
+        vapid_private_key=vapid_private_key_b64,
         vapid_claims={"sub": vapid_claims_email},
     )
 

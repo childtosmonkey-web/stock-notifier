@@ -1,5 +1,10 @@
 self.addEventListener('push', function(event) {
-    const data = event.data.json();
+    let data;
+    try {
+        data = event.data.json();
+    } catch(e) {
+        data = { title: event.data ? event.data.text() : 'Stock Notifier', body: '' };
+    }
     const options = {
         body: data.body,
         icon: '/web/icon-192.png',
