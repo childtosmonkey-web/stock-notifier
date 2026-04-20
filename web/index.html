@@ -41,6 +41,76 @@
       </button>
     </div>
 
+    <!-- 設定パネル（折りたたみ） -->
+    <div x-show="settingsOpen" class="mx-4 mt-2 space-y-4">
+      <div class="border border-gray-700 rounded-2xl p-4 space-y-3 bg-gray-900">
+
+        <!-- 監視銘柄 -->
+        <div class="space-y-2">
+          <h3 class="text-sm font-semibold text-gray-400">監視銘柄</h3>
+          <div class="space-y-2">
+            <template x-for="ticker in tickers" :key="ticker">
+              <div class="flex items-center justify-between bg-gray-700 rounded-lg px-3 py-2">
+                <span class="font-mono font-bold text-sm" x-text="ticker"></span>
+                <button @click="removeTicker(ticker)"
+                  class="text-gray-400 hover:text-red-400 text-lg leading-none">✕</button>
+              </div>
+            </template>
+          </div>
+          <div class="relative" @click.outside="suggestions = []">
+            <div class="flex gap-2">
+              <input x-model="newTicker"
+                @input.debounce.300ms="searchTickers()"
+                @keyup.enter="addTicker()"
+                @keydown.escape="suggestions = []"
+                type="text" placeholder="例: AAPL, nvidia"
+                class="flex-1 bg-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                :disabled="saving">
+              <button @click="addTicker()" :disabled="saving || !newTicker.trim()"
+                class="bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                追加
+              </button>
+            </div>
+            <div x-show="suggestions.length > 0"
+              class="absolute z-10 w-full mt-1 bg-gray-700 rounded-lg shadow-xl overflow-hidden">
+              <template x-for="s in suggestions" :key="s.ticker">
+                <button @click="selectSuggestion(s)"
+                  class="w-full flex items-center gap-3 px-3 py-2 hover:bg-gray-600 text-left transition">
+                  <span class="font-mono font-bold text-green-400 w-16 shrink-0 text-sm" x-text="s.ticker"></span>
+                  <span class="text-sm text-gray-300 truncate" x-text="s.name"></span>
+                </button>
+              </template>
+            </div>
+          </div>
+          <button @click="saveConfig()" :disabled="saving"
+            class="w-full bg-green-700 hover:bg-green-600 disabled:opacity-40 text-white py-2 rounded-lg text-sm font-semibold transition">
+            <span x-text="saving ? '保存中…' : '💾 保存'"></span>
+          </button>
+        </div>
+
+        <!-- 通知時刻 -->
+        <div class="pt-2 border-t border-gray-700 space-y-2">
+          <h3 class="text-sm font-semibold text-gray-400">通知時刻</h3>
+          <div class="flex items-center gap-3">
+            <select x-model.number="notifyHour" @change="saveNotifyHour()"
+              class="bg-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <template x-for="h in Array.from({length: 24}, (_, i) => i)" :key="h">
+                <option :value="h" x-text="`${String(h).padStart(2,'0')}:00`"></option>
+              </template>
+            </select>
+            <span class="text-sm text-gray-400">毎日この時刻に通知</span>
+            <span x-show="savingHour" class="text-xs text-blue-400">保存中…</span>
+          </div>
+        </div>
+
+        <!-- 今すぐ通知 -->
+        <button @click="triggerNotify()" :disabled="notifying"
+          class="w-full bg-purple-700 hover:bg-purple-600 disabled:opacity-40 text-white py-2.5 rounded-xl font-semibold transition text-sm">
+          <span x-text="notifying ? '送信中…' : '🚀 今すぐ通知'"></span>
+        </button>
+      </div>
+    </div>
+
     <!-- 株価カード一覧 -->
     <div class="px-4 space-y-4 mt-2">
 
@@ -98,78 +168,6 @@
         </button>
       </div>
 
-    </div>
-
-    <!-- 設定パネル（折りたたみ） -->
-    <div x-show="settingsOpen" class="mx-4 mt-6 space-y-4">
-      <div class="border-t border-gray-700 pt-4">
-        <h2 class="font-semibold text-gray-300 mb-3">設定</h2>
-
-        <!-- 監視銘柄 -->
-        <div class="bg-gray-800 rounded-xl p-4 space-y-3">
-          <h3 class="text-sm font-semibold text-gray-400">監視銘柄</h3>
-          <div class="space-y-2">
-            <template x-for="ticker in tickers" :key="ticker">
-              <div class="flex items-center justify-between bg-gray-700 rounded-lg px-3 py-2">
-                <span class="font-mono font-bold text-sm" x-text="ticker"></span>
-                <button @click="removeTicker(ticker)"
-                  class="text-gray-400 hover:text-red-400 text-lg leading-none">✕</button>
-              </div>
-            </template>
-          </div>
-          <!-- 銘柄追加 -->
-          <div class="relative" @click.outside="suggestions = []">
-            <div class="flex gap-2">
-              <input x-model="newTicker"
-                @input.debounce.300ms="searchTickers()"
-                @keyup.enter="addTicker()"
-                @keydown.escape="suggestions = []"
-                type="text" placeholder="例: AAPL, nvidia"
-                class="flex-1 bg-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                :disabled="saving">
-              <button @click="addTicker()" :disabled="saving || !newTicker.trim()"
-                class="bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
-                追加
-              </button>
-            </div>
-            <div x-show="suggestions.length > 0"
-              class="absolute z-10 w-full mt-1 bg-gray-700 rounded-lg shadow-xl overflow-hidden">
-              <template x-for="s in suggestions" :key="s.ticker">
-                <button @click="selectSuggestion(s)"
-                  class="w-full flex items-center gap-3 px-3 py-2 hover:bg-gray-600 text-left transition">
-                  <span class="font-mono font-bold text-green-400 w-16 shrink-0 text-sm" x-text="s.ticker"></span>
-                  <span class="text-sm text-gray-300 truncate" x-text="s.name"></span>
-                </button>
-              </template>
-            </div>
-          </div>
-          <button @click="saveConfig()" :disabled="saving"
-            class="w-full bg-green-700 hover:bg-green-600 disabled:opacity-40 text-white py-2 rounded-lg text-sm font-semibold transition">
-            <span x-text="saving ? '保存中…' : '💾 保存'"></span>
-          </button>
-        </div>
-
-        <!-- 通知時刻 -->
-        <div class="bg-gray-800 rounded-xl p-4 space-y-3 mt-3">
-          <h3 class="text-sm font-semibold text-gray-400">通知時刻</h3>
-          <div class="flex items-center gap-3">
-            <select x-model.number="notifyHour" @change="saveNotifyHour()"
-              class="bg-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <template x-for="h in Array.from({length: 24}, (_, i) => i)" :key="h">
-                <option :value="h" x-text="`${String(h).padStart(2,'0')}:00`"></option>
-              </template>
-            </select>
-            <span class="text-sm text-gray-400">毎日この時刻に通知</span>
-            <span x-show="savingHour" class="text-xs text-blue-400">保存中…</span>
-          </div>
-        </div>
-
-        <!-- 今すぐ通知 -->
-        <button @click="triggerNotify()" :disabled="notifying"
-          class="w-full mt-3 bg-purple-700 hover:bg-purple-600 disabled:opacity-40 text-white py-3 rounded-xl font-semibold transition">
-          <span x-text="notifying ? '送信中…' : '🚀 今すぐ通知'"></span>
-        </button>
-      </div>
     </div>
 
     <!-- メッセージ -->
