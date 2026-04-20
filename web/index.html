@@ -259,11 +259,15 @@
             const d = param.seriesData.get(inst.series);
             self.hoverPrice = d.value;
             const dt = new Date(param.time * 1000);
-            self.hoverDate = dt.toLocaleString('ja-JP', {
-              month: 'numeric', day: 'numeric',
-              hour: ['1h','1d','1w'].includes(self.period) ? 'numeric' : undefined,
-              minute: ['1h','1d'].includes(self.period) ? 'numeric' : undefined,
-            });
+            const yy = String(dt.getFullYear()).slice(-2);
+            const m = dt.getMonth() + 1;
+            const day = dt.getDate();
+            const hh = String(dt.getHours()).padStart(2, '0');
+            const mi = String(dt.getMinutes()).padStart(2, '0');
+            const showTime = ['1d', '1w'].includes(self.period);
+            self.hoverDate = showTime
+              ? `'${yy} ${m}/${day} ${hh}:${mi}`
+              : `'${yy} ${m}/${day}`;
           });
 
           this._showBars(this._filterBars('1m'));
