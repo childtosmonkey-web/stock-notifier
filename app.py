@@ -55,6 +55,9 @@ def service_worker():
     return FileResponse("web/sw.js", media_type="application/javascript")
 
 
+_chart_cache: dict = {}
+_CHART_TTL = 300
+
 _stocks_cache: dict = {"ts": 0, "data": {}}
 _CACHE_TTL = 300  # 5分キャッシュ
 
@@ -100,6 +103,51 @@ def get_stocks():
     _stocks_cache["ts"] = now
     _stocks_cache["data"] = results
     return {"stocks": list(results.values())}
+
+
+@app.get("/api/chart/{ticker}")
+def get_chart_data(ticker: str, period: str = "1m"):
+    import time as _time, datetime
+    cache_key = f"{ticker}:{period}"
+    now = _time.time()
+    if cache_key in _chart_cache and now - _chart_cache[cache_key]["ts"] < _CHART_TTL:
+        return _chart_cache[cache_key]["data"]
+
+    period_cfg = {
+        "1h": {"multiplier": 1,  "timespan": "minute", "days": 1},
+        "1d": {"multiplier": 5,  "timespan": "minute", "days": 2},
+        "1w": {"multiplier": 1,  "timespan": "hour",   "days": 7},
+        "1m": {"multiplier": 1,  "timespan": "day",    "days": 30},
+        "3m": {"multiplier": 1,  "timespan": "day",    "days": 90},
+        "6m": {"multiplier": 1,  "timespan": "day",    "days": 180},
+    }
+    cfg = period_cfg.get(period, period_cfg["1m"])
+    to_dt = datetime.datetime.utcnow()
+    from_dt = to_dt - datetime.timedelta(days=cfg["days"])
+
+    bars = []
+    if POLYGON_API_KEY:
+        try:
+            r = requests.get(
+                f"https://api.polygon.io/v2/aggs/ticker/{ticker}/range"
+                f"/{cfg['multiplier']}/{cfg['timespan']}"
+                f"/{from_dt.strftime('%Y-%m-%d')}/{to_dt.strftime('%Y-%m-%d')}",
+                params={"adjusted": "true", "sort": "asc", "limit": 500, "apiKey": POLYGON_API_KEY},
+                timeout=10,
+            )
+            if r.ok:
+                for item in r.json().get("results", []):
+                    bars.append({
+                        "time": item["t"] // 1000,
+                        "open": item["o"], "high": item["h"],
+                        "low": item["l"],  "close": item["c"],
+                    })
+        except Exception:
+            pass
+
+    data = {"bars": bars}
+    _chart_cache[cache_key] = {"ts": now, "data": data}
+    return data
 
 
 @app.get("/api/search")

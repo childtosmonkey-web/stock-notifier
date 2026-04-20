@@ -6,6 +6,7 @@
   <title>Stock Notifier</title>
   <link rel="manifest" href="/web/manifest.json">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
   <script src="https://unpkg.com/alpinejs@3/dist/cdn.min.js" defer></script>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen" x-data="app()" x-init="init()">
@@ -128,34 +129,51 @@
 
       <!-- 各銘柄カード -->
       <template x-for="s in stocks" :key="s.ticker">
-        <div class="bg-gray-800 rounded-2xl overflow-hidden">
+        <div x-data="stockCard(s)" class="bg-gray-800 rounded-2xl overflow-hidden">
           <!-- 価格ヘッダー -->
-          <div class="px-4 pt-4 pb-3 flex items-start justify-between">
-            <div>
-              <div class="text-xl font-bold font-mono" x-text="s.ticker"></div>
-              <div x-show="s.price !== null" class="flex items-baseline gap-2 mt-0.5">
-                <span class="text-2xl font-bold" x-text="'$' + Number(s.price).toFixed(2)"></span>
-                <span class="text-sm font-semibold"
-                  :class="Number(s.change_pct) >= 0 ? 'text-green-400' : 'text-red-400'"
-                  x-text="(Number(s.change_pct) >= 0 ? '▲' : '▼') + Math.abs(Number(s.change_pct)).toFixed(2) + '%'">
-                </span>
-                <span class="text-sm text-gray-400"
-                  x-text="'(' + (Number(s.change) >= 0 ? '+' : '') + Number(s.change).toFixed(2) + ')'">
-                </span>
+          <div class="px-4 pt-4 pb-2">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="text-xl font-bold font-mono" x-text="s.ticker"></div>
+                <div x-show="hoverPrice !== null" class="flex items-baseline gap-2 mt-0.5">
+                  <span class="text-2xl font-bold" x-text="'$' + Number(hoverPrice).toFixed(2)"></span>
+                  <span class="text-sm text-gray-400" x-text="hoverDate"></span>
+                </div>
+                <div x-show="hoverPrice === null && s.price !== null" class="flex items-baseline gap-2 mt-0.5">
+                  <span class="text-2xl font-bold" x-text="'$' + Number(s.price).toFixed(2)"></span>
+                  <span class="text-sm font-semibold"
+                    :class="Number(s.change_pct) >= 0 ? 'text-green-400' : 'text-red-400'"
+                    x-text="(Number(s.change_pct) >= 0 ? '▲' : '▼') + Math.abs(Number(s.change_pct)).toFixed(2) + '%  (' + (Number(s.change) >= 0 ? '+' : '') + Number(s.change).toFixed(2) + ')'">
+                  </span>
+                </div>
+                <div x-show="hoverPrice === null && s.price === null" class="text-sm text-gray-500 mt-1">取得中…</div>
               </div>
-              <div x-show="s.price === null" class="text-sm text-gray-500 mt-1">価格取得中…</div>
             </div>
-            <span class="text-xs text-gray-500 mt-1">前日比</span>
+            <!-- 期間セレクタ -->
+            <div class="flex gap-1 mt-2">
+              <template x-for="p in ['1H','1D','1W','1M','3M','6M']" :key="p">
+                <button @click="changePeriod(p.toLowerCase())"
+                  class="px-2.5 py-1 text-xs font-mono rounded-md transition"
+                  :class="period === p.toLowerCase()
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-400 hover:text-white hover:bg-gray-700'">
+                  <span x-text="p"></span>
+                </button>
+              </template>
+            </div>
           </div>
-          <!-- チャート -->
-          <img :src="s.chart_url + '?t=' + cacheKey"
-            @error="s.chartError = true"
-            x-show="!s.chartError"
-            class="w-full block"
-            alt="chart">
-          <div x-show="s.chartError"
-            class="mx-4 mb-4 py-6 text-center text-gray-600 text-sm bg-gray-900 rounded-xl">
-            チャートはまだ生成されていません
+          <!-- チャート本体 -->
+          <div class="relative">
+            <div x-init="$nextTick(() => initChart($el))"
+              class="w-full" style="height:220px"></div>
+            <div x-show="chartLoading"
+              class="absolute inset-0 flex items-center justify-center bg-gray-800/70">
+              <div class="w-5 h-5 border-2 border-gray-600 border-t-blue-400 rounded-full animate-spin"></div>
+            </div>
+            <div x-show="!chartLoading && noData"
+              class="absolute inset-0 flex items-center justify-center text-gray-500 text-sm">
+              データなし
+            </div>
           </div>
         </div>
       </template>
@@ -183,6 +201,79 @@
       const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
       const rawData = atob(base64);
       return Uint8Array.from([...rawData].map(c => c.charCodeAt(0)));
+    }
+
+    function stockCard(stockData) {
+      return {
+        s: stockData,
+        period: '1m',
+        chartLoading: false,
+        noData: false,
+        hoverPrice: null,
+        hoverDate: '',
+        _chart: null,
+        _series: null,
+
+        async initChart(el) {
+          this._chart = LightweightCharts.createChart(el, {
+            layout: { background: { color: '#1f2937' }, textColor: '#9ca3af' },
+            grid: { vertLines: { color: '#374151' }, horzLines: { color: '#374151' } },
+            crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+            rightPriceScale: { borderColor: '#374151' },
+            timeScale: { borderColor: '#374151', timeVisible: true, secondsVisible: false },
+            handleScroll: true,
+            handleScale: true,
+          });
+          this._chart.applyOptions({ width: el.clientWidth, height: 220 });
+
+          this._series = this._chart.addCandlestickSeries({
+            upColor: '#22c55e', downColor: '#ef4444',
+            borderVisible: false,
+            wickUpColor: '#22c55e', wickDownColor: '#ef4444',
+          });
+
+          const self = this;
+          this._chart.subscribeCrosshairMove(param => {
+            if (!param.time || !param.seriesData || !param.seriesData.has(self._series)) {
+              self.hoverPrice = null; self.hoverDate = '';
+              return;
+            }
+            const d = param.seriesData.get(self._series);
+            self.hoverPrice = d.close;
+            const dt = new Date(param.time * 1000);
+            self.hoverDate = dt.toLocaleString('ja-JP', {
+              month: 'numeric', day: 'numeric',
+              hour: ['1h','1d','1w'].includes(self.period) ? 'numeric' : undefined,
+              minute: ['1h','1d'].includes(self.period) ? 'numeric' : undefined,
+            });
+          });
+
+          new ResizeObserver(() => {
+            if (self._chart) self._chart.applyOptions({ width: el.clientWidth });
+          }).observe(el);
+
+          await this.loadData();
+        },
+
+        async loadData() {
+          if (!this._series) return;
+          this.chartLoading = true;
+          this.noData = false;
+          try {
+            const res = await fetch(`/api/chart/${this.s.ticker}?period=${this.period}`);
+            const data = await res.json();
+            this._series.setData(data.bars || []);
+            this._chart.timeScale().fitContent();
+            this.noData = (data.bars || []).length === 0;
+          } catch(e) { this.noData = true; }
+          finally { this.chartLoading = false; }
+        },
+
+        async changePeriod(p) {
+          this.period = p;
+          await this.loadData();
+        },
+      };
     }
 
     function app() {
