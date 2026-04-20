@@ -81,11 +81,11 @@ def get_stocks():
             try:
                 # 6ヶ月分の日足を1回で取得（全期間の切り替えをフロント側で処理）
                 to_dt = _dt.datetime.utcnow()
-                from_dt = to_dt - _dt.timedelta(days=185)
+                from_dt = to_dt - _dt.timedelta(days=370)
                 r = requests.get(
                     f"https://api.polygon.io/v2/aggs/ticker/{ticker}/range/1/day"
                     f"/{from_dt.strftime('%Y-%m-%d')}/{to_dt.strftime('%Y-%m-%d')}",
-                    params={"adjusted": "true", "sort": "asc", "limit": 200, "apiKey": POLYGON_API_KEY},
+                    params={"adjusted": "true", "sort": "asc", "limit": 400, "apiKey": POLYGON_API_KEY},
                     timeout=8,
                 )
                 if r.ok:

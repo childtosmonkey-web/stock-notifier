@@ -273,7 +273,7 @@
           const inst = this._inst();
           if (!inst) return [];
           const now = Date.now() / 1000;
-          const days = { '1w': 7, '1m': 30, '3m': 90, '6m': 180 };
+          const days = { '1w': 7, '1m': 30, '3m': 90, '6m': 180, '1y': 365 };
           const cutoff = now - (days[period] || 30) * 86400;
           return inst.allBars.filter(b => b.time >= cutoff);
         },
@@ -288,7 +288,7 @@
 
         async changePeriod(p) {
           this.period = p;
-          if (['1w', '1m', '3m', '6m'].includes(p)) {
+          if (['1w', '1m', '3m', '6m', '1y'].includes(p)) {
             this._showBars(this._filterBars(p));
           } else {
             await this.loadIntraday();
