@@ -26,13 +26,5 @@ self.addEventListener('push', function(event) {
 
 self.addEventListener('notificationclick', function(event) {
     event.notification.close();
-    const d = event.notification.data || {};
-    const params = new URLSearchParams({
-        ticker: d.ticker || '',
-        price: d.price || '',
-        change_pct: d.change_pct || '',
-        change: d.change || '',
-        chart_url: d.chart_url || '',
-    });
-    event.waitUntil(clients.openWindow('/?' + params.toString()));
+    event.waitUntil(clients.openWindow('/'));
 });

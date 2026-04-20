@@ -14,7 +14,7 @@ load_dotenv(override=True)
 from fetcher import get_stock_data, get_ohlcv_for_chart
 from chart import generate_chart
 from notifier import upload_to_github
-from web_push import send_stock_push
+from web_push import send_combined_push
 from news import fetch_ticker_news, analyze_with_gemini, save_report_to_github
 
 
@@ -90,12 +90,13 @@ def main():
         print("GEMINI_API_KEY 未設定のためレポート生成をスキップ")
 
     if subscription and results:
-        for r in results:
-            try:
-                send_stock_push(subscription, r["stock"], r["chart_url"])
-                print(f"  {r['stock']['ticker']}: Web Push送信完了")
-            except Exception as e:
-                print(f"  {r['stock']['ticker']}: Push送信エラー - {e}", file=sys.stderr)
+        try:
+            stocks = [r["stock"] for r in results]
+            send_combined_push(subscription, stocks)
+            tickers_str = ", ".join(s["ticker"] for s in stocks)
+            print(f"Web Push送信完了: {tickers_str}")
+        except Exception as e:
+            print(f"Push送信エラー: {e}", file=sys.stderr)
 
     print("完了")
 

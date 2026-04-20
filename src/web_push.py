@@ -21,24 +21,17 @@ def send_web_push(subscription: dict, payload: dict) -> None:
     )
 
 
-def send_stock_push(subscription: dict, stock_data: dict, chart_url: str | None = None) -> None:
-    """株価Web Push通知を送信する。"""
-    ticker = stock_data["ticker"]
-    price = stock_data["price"]
-    change_pct = stock_data["change_pct"]
-    change = stock_data["change"]
-
-    direction = "▲" if change >= 0 else "▼"
+def send_combined_push(subscription: dict, stocks: list[dict]) -> None:
+    """全銘柄をまとめて1通知で送信する。"""
+    lines = []
+    for s in stocks:
+        if s.get("price") is None:
+            continue
+        direction = "▲" if s["change_pct"] >= 0 else "▼"
+        lines.append(f"{s['ticker']} {direction}{abs(s['change_pct']):.2f}%  ${s['price']:.2f}")
 
     payload = {
-        "title": f"{ticker}  {direction}{abs(change_pct):.2f}%",
-        "body": f"現在値: ${price:.2f}　前日比: {change:+.2f}",
-        "image": chart_url,
-        "ticker": ticker,
-        "price": price,
-        "change_pct": change_pct,
-        "change": change,
-        "chart_url": chart_url or "",
+        "title": "📈 本日の株価",
+        "body": "\n".join(lines),
     }
-
     send_web_push(subscription, payload)
