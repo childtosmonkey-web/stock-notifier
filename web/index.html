@@ -217,6 +217,7 @@
         async initChart(el) {
           this._el = el;
           this._chart = LightweightCharts.createChart(el, {
+            autoSize: true,
             layout: { background: { color: '#1f2937' }, textColor: '#9ca3af' },
             grid: { vertLines: { color: '#374151' }, horzLines: { color: '#374151' } },
             crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
@@ -225,7 +226,6 @@
             handleScroll: true,
             handleScale: true,
           });
-          this._chart.applyOptions({ width: el.clientWidth, height: 220 });
 
           this._series = this._chart.addCandlestickSeries({
             upColor: '#22c55e', downColor: '#ef4444',
@@ -248,10 +248,6 @@
               minute: ['1h','1d'].includes(self.period) ? 'numeric' : undefined,
             });
           });
-
-          new ResizeObserver(() => {
-            if (self._chart) self._chart.applyOptions({ width: el.clientWidth });
-          }).observe(el);
 
           // 初期データは /api/stocks から取得済みのものを使う（API呼び出し不要）
           if (this.s.bars && this.s.bars.length > 0) {
