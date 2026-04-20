@@ -11,16 +11,16 @@
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen" x-data="app()" x-init="init()">
 
-  <div class="max-w-md mx-auto pb-10">
-
-    <!-- ヘッダー -->
-    <div class="flex items-center justify-between px-4 pt-6 pb-2">
+  <!-- ヘッダー（sticky・全幅） -->
+  <header class="sticky top-0 z-20 bg-gray-950/95 backdrop-blur border-b border-gray-800">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
       <h1 class="text-xl font-bold tracking-tight">📈 Stock Notifier</h1>
       <div class="flex items-center gap-2">
         <span x-text="pushStatus" class="text-xs px-2 py-1 rounded-full"
           :class="pushEnabled ? 'bg-green-800 text-green-200' : 'bg-gray-700 text-gray-400'"></span>
+        <!-- 歯車ボタン：モバイルのみ表示 -->
         <button @click="settingsOpen = !settingsOpen"
-          class="p-2 rounded-lg hover:bg-gray-800 transition text-gray-400 hover:text-white">
+          class="md:hidden p-2 rounded-lg hover:bg-gray-800 transition text-gray-400 hover:text-white">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -29,91 +29,100 @@
         </button>
       </div>
     </div>
+  </header>
 
-    <!-- 通知許可バナー -->
-    <div x-show="!pushEnabled" class="mx-4 mb-2 bg-blue-900/50 border border-blue-700 rounded-xl p-3 flex items-center gap-3">
-      <span class="text-2xl">🔔</span>
-      <div class="flex-1 min-w-0">
-        <p class="text-sm text-blue-200">通知を許可すると毎朝株価が届きます</p>
-      </div>
-      <button @click="enablePush()"
-        class="shrink-0 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-3 py-1.5 rounded-lg transition">
-        許可
-      </button>
-    </div>
+  <!-- メインレイアウト -->
+  <div class="max-w-6xl mx-auto md:flex md:gap-6 px-4 pt-4 pb-10">
 
-    <!-- 設定パネル（折りたたみ） -->
-    <div x-show="settingsOpen" class="mx-4 mt-2 space-y-4">
-      <div class="border border-gray-700 rounded-2xl p-4 space-y-3 bg-gray-900">
+    <!-- 左サイドバー：デスクトップは常時表示、モバイルはトグル -->
+    <aside class="md:w-64 md:shrink-0">
+      <div class="md:sticky md:top-20 space-y-3">
 
-        <!-- 監視銘柄 -->
-        <div class="space-y-2">
-          <h3 class="text-sm font-semibold text-gray-400">監視銘柄</h3>
-          <div class="space-y-2">
-            <template x-for="ticker in tickers" :key="ticker">
-              <div class="flex items-center justify-between bg-gray-700 rounded-lg px-3 py-2">
-                <span class="font-mono font-bold text-sm" x-text="ticker"></span>
-                <button @click="removeTicker(ticker)"
-                  class="text-gray-400 hover:text-red-400 text-lg leading-none">✕</button>
-              </div>
-            </template>
+        <!-- 通知許可バナー -->
+        <div x-show="!pushEnabled" class="bg-blue-900/50 border border-blue-700 rounded-xl p-3 flex items-center gap-3">
+          <span class="text-2xl">🔔</span>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm text-blue-200">通知を許可すると毎朝株価が届きます</p>
           </div>
-          <div class="relative" @click.outside="suggestions = []">
-            <div class="flex gap-2">
-              <input x-model="newTicker"
-                @input.debounce.300ms="searchTickers()"
-                @keyup.enter="addTicker()"
-                @keydown.escape="suggestions = []"
-                type="text" placeholder="例: AAPL, nvidia"
-                class="flex-1 bg-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                :disabled="saving">
-              <button @click="addTicker()" :disabled="saving || !newTicker.trim()"
-                class="bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
-                追加
-              </button>
-            </div>
-            <div x-show="suggestions.length > 0"
-              class="absolute z-10 w-full mt-1 bg-gray-700 rounded-lg shadow-xl overflow-hidden">
-              <template x-for="s in suggestions" :key="s.ticker">
-                <button @click="selectSuggestion(s)"
-                  class="w-full flex items-center gap-3 px-3 py-2 hover:bg-gray-600 text-left transition">
-                  <span class="font-mono font-bold text-green-400 w-16 shrink-0 text-sm" x-text="s.ticker"></span>
-                  <span class="text-sm text-gray-300 truncate" x-text="s.name"></span>
-                </button>
-              </template>
-            </div>
-          </div>
-          <button @click="saveConfig()" :disabled="saving"
-            class="w-full bg-green-700 hover:bg-green-600 disabled:opacity-40 text-white py-2 rounded-lg text-sm font-semibold transition">
-            <span x-text="saving ? '保存中…' : '💾 保存'"></span>
+          <button @click="enablePush()"
+            class="shrink-0 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-3 py-1.5 rounded-lg transition">
+            許可
           </button>
         </div>
 
-        <!-- 通知時刻 -->
-        <div class="pt-2 border-t border-gray-700 space-y-2">
-          <h3 class="text-sm font-semibold text-gray-400">通知時刻</h3>
-          <div class="flex items-center gap-3">
-            <select x-model.number="notifyHour" @change="saveNotifyHour()"
-              class="bg-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <template x-for="h in Array.from({length: 24}, (_, i) => i)" :key="h">
-                <option :value="h" x-text="`${String(h).padStart(2,'0')}:00`"></option>
+        <!-- 設定パネル：デスクトップは常時表示 -->
+        <div x-show="settingsOpen || isDesktop" class="border border-gray-700 rounded-2xl p-4 space-y-3 bg-gray-900">
+
+          <!-- 監視銘柄 -->
+          <div class="space-y-2">
+            <h3 class="text-sm font-semibold text-gray-400">監視銘柄</h3>
+            <div class="space-y-2">
+              <template x-for="ticker in tickers" :key="ticker">
+                <div class="flex items-center justify-between bg-gray-700 rounded-lg px-3 py-2">
+                  <span class="font-mono font-bold text-sm" x-text="ticker"></span>
+                  <button @click="removeTicker(ticker)"
+                    class="text-gray-400 hover:text-red-400 text-lg leading-none">✕</button>
+                </div>
               </template>
-            </select>
-            <span class="text-sm text-gray-400">毎日この時刻に通知</span>
-            <span x-show="savingHour" class="text-xs text-blue-400">保存中…</span>
+            </div>
+            <div class="relative" @click.outside="suggestions = []">
+              <div class="flex gap-2">
+                <input x-model="newTicker"
+                  @input.debounce.300ms="searchTickers()"
+                  @keyup.enter="addTicker()"
+                  @keydown.escape="suggestions = []"
+                  type="text" placeholder="例: AAPL, nvidia"
+                  class="flex-1 bg-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  :disabled="saving">
+                <button @click="addTicker()" :disabled="saving || !newTicker.trim()"
+                  class="bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                  追加
+                </button>
+              </div>
+              <div x-show="suggestions.length > 0"
+                class="absolute z-10 w-full mt-1 bg-gray-700 rounded-lg shadow-xl overflow-hidden">
+                <template x-for="s in suggestions" :key="s.ticker">
+                  <button @click="selectSuggestion(s)"
+                    class="w-full flex items-center gap-3 px-3 py-2 hover:bg-gray-600 text-left transition">
+                    <span class="font-mono font-bold text-green-400 w-16 shrink-0 text-sm" x-text="s.ticker"></span>
+                    <span class="text-sm text-gray-300 truncate" x-text="s.name"></span>
+                  </button>
+                </template>
+              </div>
+            </div>
+            <button @click="saveConfig()" :disabled="saving"
+              class="w-full bg-green-700 hover:bg-green-600 disabled:opacity-40 text-white py-2 rounded-lg text-sm font-semibold transition">
+              <span x-text="saving ? '保存中…' : '💾 保存'"></span>
+            </button>
           </div>
+
+          <!-- 通知時刻 -->
+          <div class="pt-2 border-t border-gray-700 space-y-2">
+            <h3 class="text-sm font-semibold text-gray-400">通知時刻</h3>
+            <div class="flex items-center gap-3">
+              <select x-model.number="notifyHour" @change="saveNotifyHour()"
+                class="bg-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <template x-for="h in Array.from({length: 24}, (_, i) => i)" :key="h">
+                  <option :value="h" x-text="`${String(h).padStart(2,'0')}:00`"></option>
+                </template>
+              </select>
+              <span class="text-sm text-gray-400">毎日この時刻に通知</span>
+              <span x-show="savingHour" class="text-xs text-blue-400">保存中…</span>
+            </div>
+          </div>
+
+          <!-- 今すぐ通知 -->
+          <button @click="triggerNotify()" :disabled="notifying"
+            class="w-full bg-purple-700 hover:bg-purple-600 disabled:opacity-40 text-white py-2.5 rounded-xl font-semibold transition text-sm">
+            <span x-text="notifying ? '送信中…' : '🚀 今すぐ通知'"></span>
+          </button>
         </div>
 
-        <!-- 今すぐ通知 -->
-        <button @click="triggerNotify()" :disabled="notifying"
-          class="w-full bg-purple-700 hover:bg-purple-600 disabled:opacity-40 text-white py-2.5 rounded-xl font-semibold transition text-sm">
-          <span x-text="notifying ? '送信中…' : '🚀 今すぐ通知'"></span>
-        </button>
       </div>
-    </div>
+    </aside>
 
-    <!-- 株価カード一覧 -->
-    <div class="px-4 space-y-4 mt-2">
+    <!-- 右コンテンツ：チャートグリッド -->
+    <main class="flex-1 min-w-0 mt-3 md:mt-0">
 
       <!-- ローディング -->
       <div x-show="stocksLoading" class="text-center py-10 text-gray-500">
@@ -124,75 +133,76 @@
       <!-- 銘柄なし -->
       <div x-show="!stocksLoading && stocks.length === 0"
         class="text-center py-10 text-gray-500 text-sm">
-        <p>⚙️ 右上の設定から監視銘柄を追加してください</p>
+        <p>⚙️ 設定から監視銘柄を追加してください</p>
       </div>
 
-      <!-- 各銘柄カード -->
-      <template x-for="s in stocks" :key="s.ticker">
-        <div x-data="stockCard(s)" class="bg-gray-800 rounded-2xl overflow-hidden">
-          <!-- 価格ヘッダー -->
-          <div class="px-4 pt-4 pb-2">
-            <div class="flex items-start justify-between">
-              <div>
-                <div class="text-xl font-bold font-mono" x-text="s.ticker"></div>
-                <div x-show="hoverPrice !== null" class="flex items-baseline gap-2 mt-0.5">
-                  <span class="text-2xl font-bold" x-text="'$' + Number(hoverPrice).toFixed(2)"></span>
-                  <span class="text-sm text-gray-400" x-text="hoverDate"></span>
+      <!-- 銘柄カードグリッド：モバイル1列・デスクトップ2列 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <template x-for="s in stocks" :key="s.ticker">
+          <div x-data="stockCard(s)" class="bg-gray-800 rounded-2xl overflow-hidden">
+            <!-- 価格ヘッダー -->
+            <div class="px-4 pt-4 pb-2">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="text-xl font-bold font-mono" x-text="s.ticker"></div>
+                  <div x-show="hoverPrice !== null" class="flex items-baseline gap-2 mt-0.5">
+                    <span class="text-2xl font-bold" x-text="'$' + Number(hoverPrice).toFixed(2)"></span>
+                    <span class="text-sm text-gray-400" x-text="hoverDate"></span>
+                  </div>
+                  <div x-show="hoverPrice === null && s.price !== null" class="flex items-baseline gap-2 mt-0.5">
+                    <span class="text-2xl font-bold" x-text="'$' + Number(s.price).toFixed(2)"></span>
+                    <span class="text-sm font-semibold"
+                      :class="Number(s.change_pct) >= 0 ? 'text-green-400' : 'text-red-400'"
+                      x-text="(Number(s.change_pct) >= 0 ? '▲' : '▼') + Math.abs(Number(s.change_pct)).toFixed(2) + '%  (' + (Number(s.change) >= 0 ? '+' : '') + Number(s.change).toFixed(2) + ')'">
+                    </span>
+                  </div>
+                  <div x-show="hoverPrice === null && s.price === null" class="text-sm text-gray-500 mt-1">取得中…</div>
                 </div>
-                <div x-show="hoverPrice === null && s.price !== null" class="flex items-baseline gap-2 mt-0.5">
-                  <span class="text-2xl font-bold" x-text="'$' + Number(s.price).toFixed(2)"></span>
-                  <span class="text-sm font-semibold"
-                    :class="Number(s.change_pct) >= 0 ? 'text-green-400' : 'text-red-400'"
-                    x-text="(Number(s.change_pct) >= 0 ? '▲' : '▼') + Math.abs(Number(s.change_pct)).toFixed(2) + '%  (' + (Number(s.change) >= 0 ? '+' : '') + Number(s.change).toFixed(2) + ')'">
-                  </span>
-                </div>
-                <div x-show="hoverPrice === null && s.price === null" class="text-sm text-gray-500 mt-1">取得中…</div>
+              </div>
+              <!-- 期間セレクタ -->
+              <div class="flex gap-1 mt-2">
+                <template x-for="p in ['1D','1W','1M','3M','6M','1Y']" :key="p">
+                  <button @click="changePeriod(p.toLowerCase())"
+                    class="px-2.5 py-1 text-xs font-mono rounded-md transition"
+                    :class="period === p.toLowerCase()
+                      ? 'bg-blue-600 text-white'
+                      : 'text-gray-400 hover:text-white hover:bg-gray-700'">
+                    <span x-text="p"></span>
+                  </button>
+                </template>
               </div>
             </div>
-            <!-- 期間セレクタ -->
-            <div class="flex gap-1 mt-2">
-              <template x-for="p in ['1D','1W','1M','3M','6M','1Y']" :key="p">
-                <button @click="changePeriod(p.toLowerCase())"
-                  class="px-2.5 py-1 text-xs font-mono rounded-md transition"
-                  :class="period === p.toLowerCase()
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-700'">
-                  <span x-text="p"></span>
-                </button>
-              </template>
+            <!-- チャート本体 -->
+            <div class="relative">
+              <div x-init="$nextTick(() => initChart($el))"
+                class="w-full" style="height:240px"></div>
+              <div x-show="chartLoading"
+                class="absolute inset-0 flex items-center justify-center bg-gray-800/70">
+                <div class="w-5 h-5 border-2 border-gray-600 border-t-blue-400 rounded-full animate-spin"></div>
+              </div>
+              <div x-show="!chartLoading && noData"
+                class="absolute inset-0 flex items-center justify-center text-gray-500 text-sm">
+                データなし
+              </div>
             </div>
           </div>
-          <!-- チャート本体 -->
-          <div class="relative">
-            <div x-init="$nextTick(() => initChart($el))"
-              class="w-full" style="height:220px"></div>
-            <div x-show="chartLoading"
-              class="absolute inset-0 flex items-center justify-center bg-gray-800/70">
-              <div class="w-5 h-5 border-2 border-gray-600 border-t-blue-400 rounded-full animate-spin"></div>
-            </div>
-            <div x-show="!chartLoading && noData"
-              class="absolute inset-0 flex items-center justify-center text-gray-500 text-sm">
-              データなし
-            </div>
-          </div>
-        </div>
-      </template>
+        </template>
+      </div>
 
       <!-- 更新ボタン -->
-      <div x-show="stocks.length > 0" class="text-center pt-1">
+      <div x-show="stocks.length > 0" class="text-center pt-3">
         <button @click="loadStocks(true)" :disabled="stocksLoading"
           class="text-xs text-gray-500 hover:text-gray-300 transition">
           🔄 データを更新
         </button>
       </div>
 
-    </div>
+      <!-- メッセージ -->
+      <p x-show="message" x-text="message"
+        class="mt-4 text-center text-sm py-2 rounded-lg"
+        :class="messageOk ? 'bg-green-900 text-green-300' : 'bg-red-900 text-red-300'"></p>
 
-    <!-- メッセージ -->
-    <p x-show="message" x-text="message"
-      class="mx-4 mt-4 text-center text-sm py-2 rounded-lg"
-      :class="messageOk ? 'bg-green-900 text-green-300' : 'bg-red-900 text-red-300'"></p>
-
+    </main>
   </div>
 
   <script>
@@ -210,8 +220,6 @@
     function toBars(rawBars) {
       return (rawBars || []).map(b => ({ time: b.time, value: b.close }));
     }
-
-    const _ticker = ticker => String(ticker); // Map キーを確実に plain string に
 
     function stockCard(stockData) {
       const ticker = String(stockData.ticker); // plain string（reactive proxy 外）
@@ -326,6 +334,7 @@
         notifyHour: 8,
         savingHour: false,
         settingsOpen: false,
+        isDesktop: window.matchMedia('(min-width: 768px)').matches,
         pushEnabled: false,
         pushStatus: '通知オフ',
         saving: false,
@@ -336,6 +345,10 @@
         cacheKey: Date.now(),
 
         async init() {
+          // デスクトップ判定（リサイズ追従）
+          const mq = window.matchMedia('(min-width: 768px)');
+          mq.addEventListener('change', e => { this.isDesktop = e.matches; });
+
           // Service Worker 登録
           if ('serviceWorker' in navigator) {
             await navigator.serviceWorker.register('/sw.js');
