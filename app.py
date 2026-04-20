@@ -73,29 +73,32 @@ def get_stocks():
     if now - cached["ts"] < _CACHE_TTL and set(tickers) == set(cached["data"].keys()):
         return {"stocks": list(cached["data"].values())}
 
+    import datetime as _dt
     results = {}
     for ticker in tickers:
-        chart_url = (
-            f"https://raw.githubusercontent.com/{GITHUB_USERNAME}/stock-notifier"
-            f"/main/charts/chart_{ticker}.jpg"
-        )
-        entry: dict = {"ticker": ticker, "chart_url": chart_url,
-                       "price": None, "change_pct": None, "change": None}
+        entry: dict = {"ticker": ticker, "price": None, "change_pct": None, "change": None, "bars": []}
         if POLYGON_API_KEY:
             try:
+                # 30日分の日足を1回のAPIコールで取得（価格＋チャート兼用）
+                to_dt = _dt.datetime.utcnow()
+                from_dt = to_dt - _dt.timedelta(days=35)
                 r = requests.get(
-                    f"https://api.polygon.io/v2/aggs/ticker/{ticker}/prev",
-                    params={"adjusted": "true", "apiKey": POLYGON_API_KEY},
-                    timeout=5,
+                    f"https://api.polygon.io/v2/aggs/ticker/{ticker}/range/1/day"
+                    f"/{from_dt.strftime('%Y-%m-%d')}/{to_dt.strftime('%Y-%m-%d')}",
+                    params={"adjusted": "true", "sort": "asc", "limit": 50, "apiKey": POLYGON_API_KEY},
+                    timeout=8,
                 )
                 if r.ok:
-                    res = r.json().get("results", [])
-                    if res:
-                        c = res[0]["c"]
-                        o = res[0]["o"]
+                    items = r.json().get("results", [])
+                    if items:
+                        last = items[-1]
+                        c, o = last["c"], items[-2]["c"] if len(items) > 1 else last["o"]
                         chg = round(c - o, 2)
                         chg_pct = round((chg / o) * 100, 2)
                         entry.update({"price": c, "change": chg, "change_pct": chg_pct})
+                        entry["bars"] = [{"time": i["t"] // 1000, "open": i["o"],
+                                          "high": i["h"], "low": i["l"], "close": i["c"]}
+                                         for i in items]
             except Exception:
                 pass
         results[ticker] = entry

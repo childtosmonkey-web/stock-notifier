@@ -215,6 +215,7 @@
         _series: null,
 
         async initChart(el) {
+          this._el = el;
           this._chart = LightweightCharts.createChart(el, {
             layout: { background: { color: '#1f2937' }, textColor: '#9ca3af' },
             grid: { vertLines: { color: '#374151' }, horzLines: { color: '#374151' } },
@@ -252,7 +253,13 @@
             if (self._chart) self._chart.applyOptions({ width: el.clientWidth });
           }).observe(el);
 
-          await this.loadData();
+          // 初期データは /api/stocks から取得済みのものを使う（API呼び出し不要）
+          if (this.s.bars && this.s.bars.length > 0) {
+            this._series.setData(this.s.bars);
+            this._chart.timeScale().fitContent();
+          } else {
+            await this.loadData();
+          }
         },
 
         async loadData() {
