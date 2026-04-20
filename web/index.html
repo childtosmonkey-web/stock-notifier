@@ -203,6 +203,9 @@
       return Uint8Array.from([...rawData].map(c => c.charCodeAt(0)));
     }
 
+    // Alpine の外でチャートインスタンスを管理（リアクティブ化を回避）
+    const _chartStore = new Map(); // ticker -> { chart, series, allBars }
+
     function stockCard(stockData) {
       return {
         s: stockData,
@@ -211,35 +214,34 @@
         noData: false,
         hoverPrice: null,
         hoverDate: '',
-        _chart: null,
-        _series: null,
+
+        _inst() { return _chartStore.get(this.s.ticker); },
 
         async initChart(el) {
-          this._el = el;
-          this._chart = LightweightCharts.createChart(el, {
+          const chart = LightweightCharts.createChart(el, {
             autoSize: true,
             layout: { background: { color: '#1f2937' }, textColor: '#9ca3af' },
             grid: { vertLines: { color: '#374151' }, horzLines: { color: '#374151' } },
             crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
             rightPriceScale: { borderColor: '#374151' },
             timeScale: { borderColor: '#374151', timeVisible: true, secondsVisible: false },
-            handleScroll: true,
-            handleScale: true,
           });
-
-          this._series = this._chart.addCandlestickSeries({
+          const series = chart.addCandlestickSeries({
             upColor: '#22c55e', downColor: '#ef4444',
             borderVisible: false,
             wickUpColor: '#22c55e', wickDownColor: '#ef4444',
           });
+          const allBars = (stockData.bars || []);
+          _chartStore.set(stockData.ticker, { chart, series, allBars });
 
           const self = this;
-          this._chart.subscribeCrosshairMove(param => {
-            if (!param.time || !param.seriesData || !param.seriesData.has(self._series)) {
+          chart.subscribeCrosshairMove(param => {
+            const inst = _chartStore.get(self.s.ticker);
+            if (!param.time || !inst || !param.seriesData.has(inst.series)) {
               self.hoverPrice = null; self.hoverDate = '';
               return;
             }
-            const d = param.seriesData.get(self._series);
+            const d = param.seriesData.get(inst.series);
             self.hoverPrice = d.close;
             const dt = new Date(param.time * 1000);
             self.hoverDate = dt.toLocaleString('ja-JP', {
@@ -249,49 +251,53 @@
             });
           });
 
-          // 初期データ（1M）を即時表示
-          this._allBars = this.s.bars || [];
           this._showBars(this._filterBars('1m'));
         },
 
         _filterBars(period) {
+          const inst = this._inst();
+          if (!inst) return [];
           const now = Date.now() / 1000;
-          const seconds = { '1w': 7*86400, '1m': 30*86400, '3m': 90*86400, '6m': 180*86400 };
-          const cutoff = now - (seconds[period] || seconds['1m']);
-          return this._allBars.filter(b => b.time >= cutoff);
+          const days = { '1w': 7, '1m': 30, '3m': 90, '6m': 180 };
+          const cutoff = now - (days[period] || 30) * 86400;
+          return inst.allBars.filter(b => b.time >= cutoff);
         },
 
         _showBars(bars) {
-          if (!this._series) return;
+          const inst = this._inst();
+          if (!inst) return;
           this.noData = bars.length === 0;
           if (bars.length > 0) {
-            this._series.setData(bars);
-            this._chart.timeScale().fitContent();
+            inst.series.setData(bars);
+            inst.chart.timeScale().fitContent();
           }
         },
 
-        async loadData() {
-          if (!this._series) return;
+        async changePeriod(p) {
+          this.period = p;
+          if (['1w', '1m', '3m', '6m'].includes(p)) {
+            this._showBars(this._filterBars(p));
+          } else {
+            await this.loadIntraday();
+          }
+        },
+
+        async loadIntraday() {
+          const inst = this._inst();
+          if (!inst) return;
           this.chartLoading = true;
           this.noData = false;
           try {
             const res = await fetch(`/api/chart/${this.s.ticker}?period=${this.period}`);
             const data = await res.json();
             const bars = data.bars || [];
-            this._showBars(bars);
+            this.noData = bars.length === 0;
+            if (bars.length > 0) {
+              inst.series.setData(bars);
+              inst.chart.timeScale().fitContent();
+            }
           } catch(e) { this.noData = true; }
           finally { this.chartLoading = false; }
-        },
-
-        async changePeriod(p) {
-          this.period = p;
-          if (['1w', '1m', '3m', '6m'].includes(p)) {
-            // 日足はフロントでフィルタ（API不要）
-            this._showBars(this._filterBars(p));
-          } else {
-            // 1H・1Dのみ別途取得
-            await this.loadData();
-          }
         },
       };
     }
