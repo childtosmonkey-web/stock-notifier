@@ -1,5 +1,7 @@
 {
-  "tickers": ["AAPL", "NVDA"],
+  "tickers": [
+    "IONQ"
+  ],
   "chart_days": 30,
   "push_subscription": null
 }
