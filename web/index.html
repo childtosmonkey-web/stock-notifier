@@ -249,12 +249,24 @@
             });
           });
 
-          // 初期データは /api/stocks から取得済みのものを使う（API呼び出し不要）
-          if (this.s.bars && this.s.bars.length > 0) {
-            this._series.setData(this.s.bars);
+          // 初期データ（1M）を即時表示
+          this._allBars = this.s.bars || [];
+          this._showBars(this._filterBars('1m'));
+        },
+
+        _filterBars(period) {
+          const now = Date.now() / 1000;
+          const seconds = { '1w': 7*86400, '1m': 30*86400, '3m': 90*86400, '6m': 180*86400 };
+          const cutoff = now - (seconds[period] || seconds['1m']);
+          return this._allBars.filter(b => b.time >= cutoff);
+        },
+
+        _showBars(bars) {
+          if (!this._series) return;
+          this.noData = bars.length === 0;
+          if (bars.length > 0) {
+            this._series.setData(bars);
             this._chart.timeScale().fitContent();
-          } else {
-            await this.loadData();
           }
         },
 
@@ -265,16 +277,21 @@
           try {
             const res = await fetch(`/api/chart/${this.s.ticker}?period=${this.period}`);
             const data = await res.json();
-            this._series.setData(data.bars || []);
-            this._chart.timeScale().fitContent();
-            this.noData = (data.bars || []).length === 0;
+            const bars = data.bars || [];
+            this._showBars(bars);
           } catch(e) { this.noData = true; }
           finally { this.chartLoading = false; }
         },
 
         async changePeriod(p) {
           this.period = p;
-          await this.loadData();
+          if (['1w', '1m', '3m', '6m'].includes(p)) {
+            // 日足はフロントでフィルタ（API不要）
+            this._showBars(this._filterBars(p));
+          } else {
+            // 1H・1Dのみ別途取得
+            await this.loadData();
+          }
         },
       };
     }
