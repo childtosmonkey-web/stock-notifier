@@ -151,7 +151,7 @@
             </div>
             <!-- 期間セレクタ -->
             <div class="flex gap-1 mt-2">
-              <template x-for="p in ['1H','1D','1W','1M','3M','6M','1Y','3Y','5Y']" :key="p">
+              <template x-for="p in ['1H','1D','1W','1M','3M','6M','1Y']" :key="p">
                 <button @click="changePeriod(p.toLowerCase())"
                   class="px-2.5 py-1 text-xs font-mono rounded-md transition"
                   :class="period === p.toLowerCase()
