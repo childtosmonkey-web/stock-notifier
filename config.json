@@ -4,11 +4,10 @@
   ],
   "chart_days": 30,
   "push_subscription": {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/d6DE8Pf6doU:APA91bHwf5N6uyvN-05Ec8aqQdWR5elinUCQ-jgCcCQqIhwNC58qL60wmmb-v2kRpSi060dVxd8VsInwKKtO21zuNOZ37pqkApQpkVhQY3wn2e99aQvWHY2XfkxsLPh2YvZscyjx3iZH",
-    "expirationTime": null,
+    "endpoint": "https://test.example.com",
     "keys": {
-      "p256dh": "BBKZ1qhPcFJA6nTImjmmSylp5b1lIJexQWFlRl47w4MFsez4QGgzLzlk3zyK3m8_5DsszOC7PCyVsNSFSkafQVo",
-      "auth": "HORRgbRoNyzOgzG5U5Xh9w"
+      "p256dh": "test",
+      "auth": "test"
     }
   }
 }
