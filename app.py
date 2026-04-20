@@ -55,6 +55,53 @@ def service_worker():
     return FileResponse("web/sw.js", media_type="application/javascript")
 
 
+_stocks_cache: dict = {"ts": 0, "data": {}}
+_CACHE_TTL = 300  # 5分キャッシュ
+
+@app.get("/api/stocks")
+def get_stocks():
+    """全監視銘柄の最新株価＋チャートURLを返す。"""
+    import time
+    config, _ = _get_remote_config()
+    tickers = config.get("tickers", [])
+
+    now = time.time()
+    cached = _stocks_cache
+    if now - cached["ts"] < _CACHE_TTL and set(tickers) == set(cached["data"].keys()):
+        return {"stocks": list(cached["data"].values())}
+
+    results = {}
+    for ticker in tickers:
+        chart_url = (
+            f"https://raw.githubusercontent.com/{GITHUB_USERNAME}/stock-notifier"
+            f"/main/charts/chart_{ticker}.jpg"
+        )
+        entry: dict = {"ticker": ticker, "chart_url": chart_url,
+                       "price": None, "change_pct": None, "change": None}
+        if POLYGON_API_KEY:
+            try:
+                r = requests.get(
+                    f"https://api.polygon.io/v2/aggs/ticker/{ticker}/prev",
+                    params={"adjusted": "true", "apiKey": POLYGON_API_KEY},
+                    timeout=5,
+                )
+                if r.ok:
+                    res = r.json().get("results", [])
+                    if res:
+                        c = res[0]["c"]
+                        o = res[0]["o"]
+                        chg = round(c - o, 2)
+                        chg_pct = round((chg / o) * 100, 2)
+                        entry.update({"price": c, "change": chg, "change_pct": chg_pct})
+            except Exception:
+                pass
+        results[ticker] = entry
+
+    _stocks_cache["ts"] = now
+    _stocks_cache["data"] = results
+    return {"stocks": list(results.values())}
+
+
 @app.get("/api/search")
 def search_tickers(q: str = ""):
     """ティッカー・英語社名で検索して候補を返す。"""
