@@ -4,11 +4,11 @@
   ],
   "chart_days": 30,
   "push_subscription": {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/eyZRamVczwk:APA91bEZTfqNbPyASQb-iJg8ZY1BQVaXvI9Q75qcpBrFX1Osk2lo3jUq6VL6y8Uied0nEmdWIjvDu8Wh2Sv_veZi2eBD9eubm5E1RzAYtPphS3n4AC8tETG1phwdJvZ0mgaGBHyzT4ys",
+    "endpoint": "https://fcm.googleapis.com/fcm/send/d6DE8Pf6doU:APA91bHwf5N6uyvN-05Ec8aqQdWR5elinUCQ-jgCcCQqIhwNC58qL60wmmb-v2kRpSi060dVxd8VsInwKKtO21zuNOZ37pqkApQpkVhQY3wn2e99aQvWHY2XfkxsLPh2YvZscyjx3iZH",
     "expirationTime": null,
     "keys": {
-      "p256dh": "BEj61sP_KyTiTfGCw9BuAj2X8ZOCLjHmCGjhCsFj_WV0US2LeWm7_tN8yJlu4ABaLzhbsBOBuIUa1qMI13l96xI",
-      "auth": "WAazdDnizofTgLb1XsjiAw"
+      "p256dh": "BBKZ1qhPcFJA6nTImjmmSylp5b1lIJexQWFlRl47w4MFsez4QGgzLzlk3zyK3m8_5DsszOC7PCyVsNSFSkafQVo",
+      "auth": "HORRgbRoNyzOgzG5U5Xh9w"
     }
   }
 }
