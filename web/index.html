@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Notifier</title>
+  <link rel="manifest" href="/web/manifest.json">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/alpinejs@3/dist/cdn.min.js" defer></script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen p-6" x-data="app()" x-init="init()">
+
+  <div class="max-w-md mx-auto space-y-6">
+
+    <!-- ヘッダー -->
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold">📈 Stock Notifier</h1>
+      <span x-text="pushStatus" class="text-sm px-3 py-1 rounded-full"
+        :class="pushEnabled ? 'bg-green-800 text-green-200' : 'bg-gray-700 text-gray-400'"></span>
+    </div>
+
+    <!-- 通知許可ボタン -->
+    <div x-show="!pushEnabled" class="bg-gray-800 rounded-xl p-4 space-y-3">
+      <p class="text-sm text-gray-300">毎朝8時に株価プッシュ通知を受け取るには通知を許可してください。</p>
+      <button @click="enablePush()"
+        class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg transition">
+        🔔 通知を許可する
+      </button>
+    </div>
+
+    <!-- 銘柄リスト -->
+    <div class="bg-gray-800 rounded-xl p-4 space-y-3">
+      <h2 class="font-semibold text-gray-200">監視銘柄</h2>
+
+      <div class="space-y-2">
+        <template x-for="ticker in tickers" :key="ticker">
+          <div class="flex items-center justify-between bg-gray-700 rounded-lg px-3 py-2">
+            <span class="font-mono font-bold" x-text="ticker"></span>
+            <button @click="removeTicker(ticker)"
+              class="text-gray-400 hover:text-red-400 text-lg leading-none">✕</button>
+          </div>
+        </template>
+      </div>
+
+      <!-- 銘柄追加 -->
+      <div class="flex gap-2 pt-1">
+        <input x-model="newTicker" @keyup.enter="addTicker()"
+          type="text" placeholder="例: AAPL"
+          class="flex-1 bg-gray-700 rounded-lg px-3 py-2 text-sm font-mono uppercase
+                 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          :disabled="saving">
+        <button @click="addTicker()" :disabled="saving || !newTicker.trim()"
+          class="bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+          追加
+        </button>
+      </div>
+    </div>
+
+    <!-- 操作ボタン -->
+    <div class="grid grid-cols-2 gap-3">
+      <button @click="saveConfig()" :disabled="saving"
+        class="bg-green-700 hover:bg-green-600 disabled:opacity-40 text-white py-3 rounded-xl font-semibold transition">
+        <span x-text="saving ? '保存中…' : '💾 保存'"></span>
+      </button>
+      <button @click="triggerNotify()" :disabled="notifying"
+        class="bg-purple-700 hover:bg-purple-600 disabled:opacity-40 text-white py-3 rounded-xl font-semibold transition">
+        <span x-text="notifying ? '送信中…' : '🚀 今すぐ通知'"></span>
+      </button>
+    </div>
+
+    <!-- メッセージ -->
+    <p x-show="message" x-text="message"
+      class="text-center text-sm py-2 rounded-lg"
+      :class="messageOk ? 'bg-green-900 text-green-300' : 'bg-red-900 text-red-300'"></p>
+
+  </div>
+
+  <script>
+    function urlBase64ToUint8Array(base64String) {
+      const padding = '='.repeat((4 - base64String.length % 4) % 4);
+      const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+      const rawData = atob(base64);
+      return Uint8Array.from([...rawData].map(c => c.charCodeAt(0)));
+    }
+
+    function app() {
+      return {
+        tickers: [],
+        newTicker: '',
+        pushEnabled: false,
+        pushStatus: '通知オフ',
+        saving: false,
+        notifying: false,
+        message: '',
+        messageOk: true,
+        vapidKey: '',
+
+        async init() {
+          // Service Worker 登録
+          if ('serviceWorker' in navigator) {
+            await navigator.serviceWorker.register('/web/sw.js');
+          }
+          // VAPID公開鍵取得
+          const res = await fetch('/api/vapid-public-key');
+          const data = await res.json();
+          this.vapidKey = data.key;
+
+          // 現在のPush登録状態確認
+          const reg = await navigator.serviceWorker.ready;
+          const sub = await reg.pushManager.getSubscription();
+          if (sub) { this.pushEnabled = true; this.pushStatus = '通知オン'; }
+
+          // 銘柄読み込み
+          await this.loadConfig();
+        },
+
+        async loadConfig() {
+          const res = await fetch('/api/config');
+          const data = await res.json();
+          this.tickers = data.tickers || [];
+        },
+
+        addTicker() {
+          const t = this.newTicker.trim().toUpperCase();
+          if (t && !this.tickers.includes(t)) {
+            this.tickers.push(t);
+          }
+          this.newTicker = '';
+        },
+
+        removeTicker(ticker) {
+          this.tickers = this.tickers.filter(t => t !== ticker);
+        },
+
+        async saveConfig() {
+          this.saving = true;
+          try {
+            const res = await fetch('/api/config/tickers', {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ tickers: this.tickers }),
+            });
+            if (!res.ok) throw new Error(await res.text());
+            this.showMessage('保存しました', true);
+          } catch (e) {
+            this.showMessage('保存に失敗しました: ' + e.message, false);
+          } finally {
+            this.saving = false;
+          }
+        },
+
+        async enablePush() {
+          try {
+            const permission = await Notification.requestPermission();
+            if (permission !== 'granted') {
+              this.showMessage('通知が許可されませんでした', false); return;
+            }
+            const reg = await navigator.serviceWorker.ready;
+            const sub = await reg.pushManager.subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: urlBase64ToUint8Array(this.vapidKey),
+            });
+            await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ subscription: sub.toJSON() }),
+            });
+            this.pushEnabled = true;
+            this.pushStatus = '通知オン';
+            this.showMessage('通知を設定しました！', true);
+          } catch (e) {
+            this.showMessage('通知設定に失敗しました: ' + e.message, false);
+          }
+        },
+
+        async triggerNotify() {
+          this.notifying = true;
+          try {
+            const res = await fetch('/api/notify', { method: 'POST' });
+            if (!res.ok) throw new Error(await res.text());
+            this.showMessage('通知を送信しました（数分後に届きます）', true);
+          } catch (e) {
+            this.showMessage('送信に失敗しました: ' + e.message, false);
+          } finally {
+            this.notifying = false;
+          }
+        },
+
+        showMessage(msg, ok) {
+          this.message = msg; this.messageOk = ok;
+          setTimeout(() => { this.message = ''; }, 4000);
+        },
+      };
+    }
+  </script>
+</body>
+</html>
