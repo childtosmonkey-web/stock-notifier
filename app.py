@@ -123,6 +123,9 @@ def get_chart_data(ticker: str, period: str = "1m"):
         "1m": {"multiplier": 1,  "timespan": "day",    "days": 30},
         "3m": {"multiplier": 1,  "timespan": "day",    "days": 90},
         "6m": {"multiplier": 1,  "timespan": "day",    "days": 180},
+        "1y": {"multiplier": 1,  "timespan": "day",    "days": 365},
+        "3y": {"multiplier": 1,  "timespan": "week",   "days": 1095},
+        "5y": {"multiplier": 1,  "timespan": "week",   "days": 1825},
     }
     cfg = period_cfg.get(period, period_cfg["1m"])
     to_dt = datetime.datetime.utcnow()
