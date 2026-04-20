@@ -271,11 +271,10 @@
 
         _filterBars(period) {
           const inst = this._inst();
-          if (!inst) return [];
-          const now = Date.now() / 1000;
-          const days = { '1d': 5, '1w': 7, '1m': 30, '3m': 90, '6m': 180, '1y': 365 };
-          const cutoff = now - (days[period] || 30) * 86400;
-          return inst.allBars.filter(b => b.time >= cutoff);
+          if (!inst || inst.allBars.length === 0) return [];
+          const counts = { '1d': 5, '1w': 7, '1m': 22, '3m': 65, '6m': 130, '1y': 252 };
+          const n = counts[period] ?? 22;
+          return inst.allBars.slice(-n);
         },
 
         _showBars(bars) {
