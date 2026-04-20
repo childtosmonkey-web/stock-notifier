@@ -98,7 +98,7 @@
         async init() {
           // Service Worker 登録
           if ('serviceWorker' in navigator) {
-            await navigator.serviceWorker.register('/web/sw.js');
+            await navigator.serviceWorker.register('/sw.js');
           }
           // VAPID公開鍵取得
           const res = await fetch('/api/vapid-public-key');

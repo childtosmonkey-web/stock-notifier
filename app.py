@@ -49,6 +49,11 @@ def index():
     return FileResponse("web/index.html")
 
 
+@app.get("/sw.js")
+def service_worker():
+    return FileResponse("web/sw.js", media_type="application/javascript")
+
+
 @app.get("/api/vapid-public-key")
 def get_vapid_public_key():
     return {"key": VAPID_PUBLIC_KEY}
