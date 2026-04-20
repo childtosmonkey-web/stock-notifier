@@ -3,12 +3,5 @@
     "IONQ"
   ],
   "chart_days": 30,
-  "push_subscription": {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/dyQNDh4uA1Y:APA91bGVBsZZMtOdavgk0FWH9RneeDL_epDwbgElaMFN9sEN5grj9zA0_30P5n8_wowM43a3AFmfgUMFvbuB4Bh06I4uv-uJudLm0sf22v7EaxqOA2XjBJmJP8Ejs2v_do1W2KBtxu5_",
-    "expirationTime": null,
-    "keys": {
-      "p256dh": "BOTYuB4CB-Nq8aAmDx-JNE3Vp-S5MweEK0NPaTYKrHSD8Ap8IQy9oNk1h5aqhbxh1HlIRQAx7xvl-cBY_NhhiPM",
-      "auth": "vyk_V0ylY13hXZAS6wUgdw"
-    }
-  }
+  "push_subscription": null
 }
