@@ -117,9 +117,9 @@ def get_chart_data(ticker: str, period: str = "1m"):
         return _chart_cache[cache_key]["data"]
 
     period_cfg = {
-        "1h": {"multiplier": 1,  "timespan": "minute", "days": 1},
-        "1d": {"multiplier": 5,  "timespan": "minute", "days": 2},
-        "1w": {"multiplier": 1,  "timespan": "hour",   "days": 7},
+        "1h": {"multiplier": 5,  "timespan": "minute", "days": 5},   # 5分足、直近5日（週末対応）
+        "1d": {"multiplier": 1,  "timespan": "hour",   "days": 5},   # 1時間足、直近5日
+        "1w": {"multiplier": 12, "timespan": "hour",   "days": 14},  # 12時間足、直近14日
         "1m": {"multiplier": 1,  "timespan": "day",    "days": 30},
         "3m": {"multiplier": 1,  "timespan": "day",    "days": 90},
         "6m": {"multiplier": 1,  "timespan": "day",    "days": 180},
@@ -150,7 +150,8 @@ def get_chart_data(ticker: str, period: str = "1m"):
             pass
 
     data = {"bars": bars}
-    _chart_cache[cache_key] = {"ts": now, "data": data}
+    if bars:  # 空データはキャッシュしない（週末・祝日対応）
+        _chart_cache[cache_key] = {"ts": now, "data": data}
     return data
 
 
