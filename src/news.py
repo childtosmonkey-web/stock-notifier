@@ -36,16 +36,15 @@ def fetch_ticker_news(ticker: str, api_key: str, hours: int = 24) -> list[dict]:
 def analyze_with_gemini(stocks: list[dict], news_by_ticker: dict[str, list]) -> str:
     """Gemini APIで株価とニュースを分析・要約してレポートを生成"""
     try:
-        import google.generativeai as genai
+        from google import genai
     except ImportError:
-        return "google-generativeaiパッケージが未インストールです"
+        return "google-genaiパッケージが未インストールです"
 
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         return "GEMINI_API_KEY が未設定です"
 
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-2.0-flash")
+    client = genai.Client(api_key=api_key)
 
     # 株価サマリー
     stocks_lines = []
@@ -101,7 +100,10 @@ def analyze_with_gemini(stocks: list[dict], news_by_ticker: dict[str, list]) -> 
 
 株価変動とニュースの因果関係を具体的に説明してください。ニュースがない銘柄は市場全体の動向から推察してください。"""
 
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model="gemini-1.5-flash",
+        contents=prompt,
+    )
     return response.text
 
 

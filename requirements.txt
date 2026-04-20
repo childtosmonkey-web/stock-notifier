@@ -8,4 +8,4 @@ Pillow
 fastapi
 uvicorn[standard]
 pywebpush
-google-generativeai
+google-genai
