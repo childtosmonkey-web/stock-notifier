@@ -4,6 +4,8 @@ import sys
 import os
 import json
 import time
+import base64
+import requests
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT_DIR)
@@ -23,18 +25,46 @@ def load_config() -> dict:
         return json.load(f)
 
 
+def save_last_notified(today: str) -> None:
+    """config.jsonのlast_notified_dateをGitHub APIで更新（二重通知防止）"""
+    github_token = os.environ.get("GITHUB_TOKEN", "")
+    github_username = os.environ.get("GITHUB_USERNAME", "childtosmonkey-web")
+    api_url = f"https://api.github.com/repos/{github_username}/stock-notifier/contents/config.json"
+    headers = {"Authorization": f"token {github_token}"}
+
+    r = requests.get(api_url, headers=headers, timeout=10)
+    r.raise_for_status()
+    body = r.json()
+    config = json.loads(base64.b64decode(body["content"]).decode())
+    config["last_notified_date"] = today
+    content = base64.b64encode(json.dumps(config, indent=2, ensure_ascii=False).encode()).decode()
+    requests.put(api_url, headers=headers,
+                 json={"message": "Update last_notified_date", "content": content, "sha": body["sha"]},
+                 timeout=30).raise_for_status()
+
+
 def main():
     import datetime, zoneinfo
     config = load_config()
 
     # スケジュール実行時（workflow_dispatch以外）は時刻チェック
+    jst = zoneinfo.ZoneInfo("Asia/Tokyo")
+    now_jst = datetime.datetime.now(jst)
+    today_str = now_jst.strftime("%Y-%m-%d")
+
     if os.environ.get("SCHEDULED_RUN") == "1":
-        jst = zoneinfo.ZoneInfo("Asia/Tokyo")
-        current_hour = datetime.datetime.now(jst).hour
-        notify_hour = config.get("notify_hour", 8)
-        if current_hour != notify_hour:
-            print(f"現在 {current_hour} 時 / 通知設定 {notify_hour} 時 → スキップ")
+        # 今日すでに通知済みなら二重送信しない
+        if config.get("last_notified_date") == today_str:
+            print(f"本日({today_str})はすでに通知済み → スキップ")
             return
+
+        # GitHub Actionsのcron遅延対策：±1時間の範囲で許容
+        current_hour = now_jst.hour
+        notify_hour = config.get("notify_hour", 8)
+        if abs(current_hour - notify_hour) > 1:
+            print(f"現在 {current_hour} 時 / 通知設定 {notify_hour} 時（±1時間範囲外） → スキップ")
+            return
+        print(f"現在 {current_hour} 時 / 通知設定 {notify_hour} 時 → 実行")
 
     tickers = config["tickers"]
     chart_days = config.get("chart_days", 30)
@@ -95,6 +125,13 @@ def main():
             send_combined_push(subscription, stocks)
             tickers_str = ", ".join(s["ticker"] for s in stocks)
             print(f"Web Push送信完了: {tickers_str}")
+            # 送信成功後に今日の通知済みフラグを保存
+            if os.environ.get("SCHEDULED_RUN") == "1":
+                try:
+                    save_last_notified(today_str)
+                    print("通知済み日付を保存しました")
+                except Exception as e:
+                    print(f"通知済み日付の保存エラー: {e}", file=sys.stderr)
         except Exception as e:
             print(f"Push送信エラー: {e}", file=sys.stderr)
 
