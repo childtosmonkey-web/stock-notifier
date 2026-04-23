@@ -125,17 +125,17 @@ def analyze_with_groq(stocks: list[dict], news_by_ticker: dict[str, list]) -> st
 
     client = Groq(api_key=api_key)
 
-    # 株価テーブル（数値改ざん防止のため明示的に構造化）
+    # 株価テーブル（数値・方向の改ざん防止のため明示的に構造化）
     stock_rows = []
     significant_tickers = []
     for s in stocks:
         if s.get("price") is None:
             continue
-        direction = "▲" if s["change_pct"] >= 0 else "▼"
+        direction = "上昇" if s["change_pct"] >= 0 else "下落"
         is_significant = abs(s["change_pct"]) >= _SIGNIFICANT_MOVE_PCT
         flag = "★要分析" if is_significant else "軽微"
         stock_rows.append(
-            f"| {s['ticker']} | ${s['price']:.2f} | {direction}{abs(s['change_pct']):.2f}% | {flag} |"
+            f"| {s['ticker']} | ${s['price']:.2f} | {direction} {abs(s['change_pct']):.2f}% | {flag} |"
         )
         if is_significant:
             significant_tickers.append(s["ticker"])
@@ -193,9 +193,9 @@ def analyze_with_groq(stocks: list[dict], news_by_ticker: dict[str, list]) -> st
 大きな変動があった銘柄を中心に本日の注目点のみ。
 
 ### 📈 銘柄別分析
-★要分析の銘柄のみ詳しく分析：
-- 変動幅（上記テーブルの数値をそのまま記載）
-- 変動の原因（ニュースから特定できた場合のみ。できない場合は「原因不明」）
+★要分析の銘柄（{significant_str}）を必ず全て分析すること：
+- 変動幅（上記テーブルの「前日比」の数値と「上昇」「下落」をそのまま使用）
+- 変動の原因（ニュースから特定できた場合のみ。できない場合は「原因不明（関連ニュースなし）」）
 
 軽微な変動の銘柄は特記すべきニュースがある場合のみ1行で言及。
 
