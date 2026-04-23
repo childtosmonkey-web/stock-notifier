@@ -357,7 +357,7 @@
         stocksLoading: false,
         newTicker: '',
         suggestions: [],
-        notifyHour: 8,
+        notifyHour: parseInt(localStorage.getItem('notifyHour') ?? '8', 10) || 8,
         savingHour: false,
         settingsOpen: false,
         isDesktop: window.matchMedia('(min-width: 768px)').matches,
@@ -412,6 +412,7 @@
           const data = await res.json();
           this.tickers = data.tickers || [];
           this.notifyHour = data.notify_hour ?? 8;
+          localStorage.setItem('notifyHour', this.notifyHour);
         },
 
         async loadStocks(forceRefresh = false) {
@@ -441,6 +442,7 @@
               body: JSON.stringify({ notify_hour: this.notifyHour }),
             });
             if (!res.ok) throw new Error(await res.text());
+            localStorage.setItem('notifyHour', this.notifyHour);
             this.showMessage(`通知時刻を ${String(this.notifyHour).padStart(2,'0')}:00 に設定しました`, true);
           } catch(e) {
             this.showMessage('保存に失敗しました: ' + e.message, false);
