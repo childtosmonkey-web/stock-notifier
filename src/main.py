@@ -17,7 +17,7 @@ from fetcher import get_stock_data, get_ohlcv_for_chart
 from chart import generate_chart
 from notifier import upload_to_github
 from web_push import send_combined_push
-from news import fetch_ticker_news, analyze_with_gemini, save_report_to_github
+from news import fetch_ticker_news, analyze_with_groq, save_report_to_github
 
 
 def load_config() -> dict:
@@ -95,8 +95,8 @@ def main():
 
     # ニュース取得とAIレポート生成
     polygon_key = os.environ.get("POLYGON_API_KEY", "")
-    gemini_key = os.environ.get("GEMINI_API_KEY", "")
-    if gemini_key and polygon_key and results:
+    groq_key = os.environ.get("GROQ_API_KEY", "")
+    if groq_key and polygon_key and results:
         try:
             print("ニュースを取得中...")
             news_by_ticker: dict = {}
@@ -106,9 +106,9 @@ def main():
                 print(f"  {ticker}: {len(articles)}件のニュース取得")
                 time.sleep(13)  # Polygon レート制限対策
 
-            print("Gemini APIで分析中...")
+            print("Groq APIで分析中...")
             stocks_for_analysis = [r["stock"] for r in results]
-            report_text = analyze_with_gemini(stocks_for_analysis, news_by_ticker)
+            report_text = analyze_with_groq(stocks_for_analysis, news_by_ticker)
 
             github_token = os.environ.get("GITHUB_TOKEN", "")
             github_username = os.environ.get("GITHUB_USERNAME", "childtosmonkey-web")
@@ -117,7 +117,7 @@ def main():
         except Exception as e:
             print(f"レポート生成エラー（通知は続行）: {e}", file=sys.stderr)
     else:
-        print("GEMINI_API_KEY 未設定のためレポート生成をスキップ")
+        print("GROQ_API_KEY 未設定のためレポート生成をスキップ")
 
     if subscription and results:
         try:

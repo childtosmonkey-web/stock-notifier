@@ -33,18 +33,18 @@ def fetch_ticker_news(ticker: str, api_key: str, hours: int = 24) -> list[dict]:
     return []
 
 
-def analyze_with_gemini(stocks: list[dict], news_by_ticker: dict[str, list]) -> str:
-    """Gemini APIで株価とニュースを分析・要約してレポートを生成"""
+def analyze_with_groq(stocks: list[dict], news_by_ticker: dict[str, list]) -> str:
+    """Groq APIで株価とニュースを分析・要約してレポートを生成"""
     try:
-        from google import genai
+        from groq import Groq
     except ImportError:
-        return "google-genaiパッケージが未インストールです"
+        return "groqパッケージが未インストールです"
 
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
-        return "GEMINI_API_KEY が未設定です"
+        return "GROQ_API_KEY が未設定です"
 
-    client = genai.Client(api_key=api_key)
+    client = Groq(api_key=api_key)
 
     # 株価サマリー
     stocks_lines = []
@@ -100,11 +100,11 @@ def analyze_with_gemini(stocks: list[dict], news_by_ticker: dict[str, list]) -> 
 
 株価変動とニュースの因果関係を具体的に説明してください。ニュースがない銘柄は市場全体の動向から推察してください。"""
 
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=prompt,
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role": "user", "content": prompt}],
     )
-    return response.text
+    return response.choices[0].message.content
 
 
 def save_report_to_github(
