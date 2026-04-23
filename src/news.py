@@ -12,6 +12,8 @@ REPORT_PATH = "daily_report.json"
 
 def _fetch_from_polygon(ticker: str, api_key: str, hours: int = 24) -> list[dict]:
     """Polygon APIから指定銘柄の直近ニュースを取得"""
+    from fetcher import polygon_rate_limit
+    polygon_rate_limit()
     from_dt = (datetime.utcnow() - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
     try:
         r = requests.get(

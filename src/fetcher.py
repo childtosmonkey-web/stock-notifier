@@ -1,9 +1,23 @@
 """株価データの取得（Polygon.io）"""
 
 import os
+import time
 from datetime import date, timedelta
 from itertools import islice
 from polygon import RESTClient
+
+# Polygon無料プランは5回/分。13秒間隔で全呼び出しを制御する
+_POLYGON_MIN_INTERVAL = 13.0
+_last_polygon_call: float = 0.0
+
+
+def polygon_rate_limit() -> None:
+    """Polygon APIコール前に呼ぶ。必要な待機時間だけスリープする。"""
+    global _last_polygon_call
+    wait = _POLYGON_MIN_INTERVAL - (time.time() - _last_polygon_call)
+    if wait > 0:
+        time.sleep(wait)
+    _last_polygon_call = time.time()
 
 
 def get_stock_data(ticker: str) -> dict:
@@ -29,6 +43,7 @@ def get_stock_data(ticker: str) -> dict:
     end = date.today() - timedelta(days=1)
     start = end - timedelta(days=7)
 
+    polygon_rate_limit()
     aggs = list(islice(client.list_aggs(
         ticker=ticker,
         multiplier=1,
@@ -69,6 +84,7 @@ def get_ohlcv_for_chart(ticker: str, days: int = 30) -> list[dict]:
     end = date.today() - timedelta(days=1)
     start = end - timedelta(days=days + 10)  # 週末・祝日の余裕
 
+    polygon_rate_limit()
     aggs = list(islice(client.list_aggs(
         ticker=ticker,
         multiplier=1,

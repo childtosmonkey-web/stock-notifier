@@ -83,7 +83,6 @@ def main():
             print(f"  {ticker}: ${stock['price']:.2f} ({stock['change_pct']:+.2f}%)")
         except Exception as e:
             print(f"  {ticker}: 株価取得エラー - {e}", file=sys.stderr)
-            time.sleep(15)
             continue
 
         chart_url = None
@@ -96,7 +95,6 @@ def main():
             print(f"  {ticker}: チャートエラー（通知は続行） - {e}", file=sys.stderr)
 
         results.append({"stock": stock, "chart_url": chart_url})
-        time.sleep(15)  # レート制限対策（無料プラン: 5回/分）
 
     # ニュース取得とAIレポート生成
     polygon_key = os.environ.get("POLYGON_API_KEY", "")
@@ -109,7 +107,6 @@ def main():
                 articles = fetch_ticker_news(ticker, polygon_key)
                 news_by_ticker[ticker] = articles
                 print(f"  {ticker}: {len(articles)}件のニュース取得")
-                time.sleep(13)  # Polygon レート制限対策
 
             print("Groq APIで分析中...")
             stocks_for_analysis = [r["stock"] for r in results]
