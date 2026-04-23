@@ -57,21 +57,56 @@ def _fetch_from_yfinance(ticker: str, hours: int = 24) -> list[dict]:
         return []
 
 
+def _fetch_from_finnhub(ticker: str, hours: int = 24) -> list[dict]:
+    """Finnhub APIから指定銘柄のニュースを取得（Bloomberg, Reuters, Dow Jones等）"""
+    api_key = os.environ.get("FINNHUB_API_KEY", "")
+    if not api_key:
+        return []
+    try:
+        from datetime import timezone
+        now = datetime.now(timezone.utc)
+        from_date = (now - timedelta(hours=hours)).strftime("%Y-%m-%d")
+        to_date = now.strftime("%Y-%m-%d")
+        r = requests.get(
+            "https://finnhub.io/api/v1/company-news",
+            params={"symbol": ticker, "from": from_date, "to": to_date, "token": api_key},
+            timeout=10,
+        )
+        if not r.ok:
+            return []
+        result = []
+        cutoff = now - timedelta(hours=hours)
+        for a in r.json():
+            pub_dt = datetime.fromtimestamp(a.get("datetime", 0), tz=timezone.utc)
+            if pub_dt < cutoff:
+                continue
+            result.append({
+                "title": a.get("headline", ""),
+                "description": a.get("summary", ""),
+                "published_utc": pub_dt.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "publisher": a.get("source", ""),
+            })
+        return result
+    except Exception:
+        return []
+
+
 def fetch_ticker_news(ticker: str, api_key: str, hours: int = 24) -> list[dict]:
-    """Polygon + yfinanceから指定銘柄の直近ニュースを取得（結合・重複除去）"""
+    """Polygon + yfinance + Finnhubから指定銘柄の直近ニュースを取得（結合・重複除去）"""
     polygon = _fetch_from_polygon(ticker, api_key, hours)
     yf_news = _fetch_from_yfinance(ticker, hours)
+    finnhub = _fetch_from_finnhub(ticker, hours)
 
     seen = set()
     combined = []
-    for a in polygon + yf_news:
+    for a in polygon + yf_news + finnhub:
         title = a.get("title", "").strip()
         if title and title not in seen:
             seen.add(title)
             combined.append(a)
 
     combined.sort(key=lambda x: x.get("published_utc", ""), reverse=True)
-    return combined[:12]
+    return combined[:15]
 
 
 def analyze_with_groq(stocks: list[dict], news_by_ticker: dict[str, list]) -> str:
