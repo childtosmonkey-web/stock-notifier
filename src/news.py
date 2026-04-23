@@ -44,7 +44,7 @@ def analyze_with_gemini(stocks: list[dict], news_by_ticker: dict[str, list]) -> 
     if not api_key:
         return "GEMINI_API_KEY が未設定です"
 
-    client = genai.Client(api_key=api_key, http_options={"api_version": "v1"})
+    client = genai.Client(api_key=api_key)
 
     # 株価サマリー
     stocks_lines = []
@@ -101,7 +101,7 @@ def analyze_with_gemini(stocks: list[dict], news_by_ticker: dict[str, list]) -> 
 株価変動とニュースの因果関係を具体的に説明してください。ニュースがない銘柄は市場全体の動向から推察してください。"""
 
     response = client.models.generate_content(
-        model="gemini-1.5-flash",
+        model="gemini-2.0-flash",
         contents=prompt,
     )
     return response.text
