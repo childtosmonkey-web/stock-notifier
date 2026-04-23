@@ -411,8 +411,7 @@
           const res = await fetch('/api/config');
           const data = await res.json();
           this.tickers = data.tickers || [];
-          this.notifyHour = data.notify_hour ?? 8;
-          localStorage.setItem('notifyHour', this.notifyHour);
+          // notifyHourはlocalStorageを正とする（APIは上書きしない）
         },
 
         async loadStocks(forceRefresh = false) {
@@ -435,6 +434,7 @@
 
         async saveNotifyHour() {
           this.savingHour = true;
+          localStorage.setItem('notifyHour', this.notifyHour);
           try {
             const res = await fetch('/api/config/notify-hour', {
               method: 'PUT',
@@ -442,7 +442,6 @@
               body: JSON.stringify({ notify_hour: this.notifyHour }),
             });
             if (!res.ok) throw new Error(await res.text());
-            localStorage.setItem('notifyHour', this.notifyHour);
             this.showMessage(`通知時刻を ${String(this.notifyHour).padStart(2,'0')}:00 に設定しました`, true);
           } catch(e) {
             this.showMessage('保存に失敗しました: ' + e.message, false);
