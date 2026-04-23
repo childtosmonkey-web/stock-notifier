@@ -7,7 +7,7 @@
     "IREN"
   ],
   "chart_days": 30,
-  "notify_hour": 8,
+  "notify_hour": 7,
   "push_subscription": {
     "endpoint": "https://fcm.googleapis.com/fcm/send/essRc1v5axU:APA91bE9J2gejQiCPYN5fh89--jiEJ27t5dfdBqrzYQa5O-16bkE4fRv1XTYARTmCIv6_MXlrbwWfyWvvEf6zhjSYZbCUWpUu7LNrlhvUqqAfRykauUsSOx_blmsBTdsfvCbu6_0cFKL",
     "expirationTime": null,
