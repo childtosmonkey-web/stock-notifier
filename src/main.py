@@ -81,17 +81,22 @@ def main():
             print(f"  {ticker}: データ取得中...")
             stock = get_stock_data(ticker)
             print(f"  {ticker}: ${stock['price']:.2f} ({stock['change_pct']:+.2f}%)")
+        except Exception as e:
+            print(f"  {ticker}: 株価取得エラー - {e}", file=sys.stderr)
+            time.sleep(15)
+            continue
 
+        chart_url = None
+        try:
             ohlcv = get_ohlcv_for_chart(ticker, days=chart_days)
             chart_path = generate_chart(ticker, ohlcv)
             chart_url = upload_to_github(chart_path)
             print(f"  {ticker}: チャート生成・アップロード完了")
-
-            results.append({"stock": stock, "chart_url": chart_url})
-            time.sleep(15)  # レート制限対策（無料プラン: 5回/分）
-
         except Exception as e:
-            print(f"  {ticker}: エラー - {e}", file=sys.stderr)
+            print(f"  {ticker}: チャートエラー（通知は続行） - {e}", file=sys.stderr)
+
+        results.append({"stock": stock, "chart_url": chart_url})
+        time.sleep(15)  # レート制限対策（無料プラン: 5回/分）
 
     # ニュース取得とAIレポート生成
     polygon_key = os.environ.get("POLYGON_API_KEY", "")
