@@ -1,4 +1,5 @@
 polygon-api-client
+yfinance
 mplfinance
 pandas
 matplotlib

@@ -10,7 +10,7 @@ GITHUB_REPO = "stock-notifier"
 REPORT_PATH = "daily_report.json"
 
 
-def fetch_ticker_news(ticker: str, api_key: str, hours: int = 24) -> list[dict]:
+def _fetch_from_polygon(ticker: str, api_key: str, hours: int = 24) -> list[dict]:
     """Polygon APIから指定銘柄の直近ニュースを取得"""
     from_dt = (datetime.utcnow() - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
     try:
@@ -31,6 +31,47 @@ def fetch_ticker_news(ticker: str, api_key: str, hours: int = 24) -> list[dict]:
     except Exception:
         pass
     return []
+
+
+def _fetch_from_yfinance(ticker: str, hours: int = 24) -> list[dict]:
+    """yfinance経由でYahoo Financeのニュースを取得（Reuters, AP等を含む）"""
+    try:
+        import yfinance as yf
+        from datetime import timezone
+        cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
+        articles = yf.Ticker(ticker).news or []
+        result = []
+        for a in articles:
+            pub_ts = a.get("providerPublishTime", 0)
+            pub_dt = datetime.fromtimestamp(pub_ts, tz=timezone.utc)
+            if pub_dt < cutoff:
+                continue
+            result.append({
+                "title": a.get("title", ""),
+                "description": a.get("summary", ""),
+                "published_utc": pub_dt.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "publisher": a.get("publisher", ""),
+            })
+        return result
+    except Exception:
+        return []
+
+
+def fetch_ticker_news(ticker: str, api_key: str, hours: int = 24) -> list[dict]:
+    """Polygon + yfinanceから指定銘柄の直近ニュースを取得（結合・重複除去）"""
+    polygon = _fetch_from_polygon(ticker, api_key, hours)
+    yf_news = _fetch_from_yfinance(ticker, hours)
+
+    seen = set()
+    combined = []
+    for a in polygon + yf_news:
+        title = a.get("title", "").strip()
+        if title and title not in seen:
+            seen.add(title)
+            combined.append(a)
+
+    combined.sort(key=lambda x: x.get("published_utc", ""), reverse=True)
+    return combined[:12]
 
 
 def analyze_with_groq(stocks: list[dict], news_by_ticker: dict[str, list]) -> str:
