@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-23",
-  "generated_at": "2026-04-23T23:34:30.102240Z",
+  "date": "2026-04-24",
+  "generated_at": "2026-04-24T23:09:15.010052Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日はIONQ、RKLB、IRENの3銘柄が大きな変動を見せた。IONQは2.33%上昇、RKLBは3.92%上昇、IRENは7.13%上昇した。\n\n### 📈 銘柄別分析\n- IONQ：2.33%上昇。原因は、テクノロジー株の下落に連動した可能性がある。\n- RKLB：3.92%上昇。原因は、Rocket Labの新型高性能星間追跡装置の発表や、SpaceXのIPOがロケット市場の評価を変えたことによる。\n- IREN：7.13%上昇。原因は、データセンター事業への転換が好意的に受け止められたことによる。\n\n### 🔍 今後の注目ポイント\n- IRENの5月7日の決算発表に注目。\n- RKLBの5月7日の決算発表に注目。\n- テクノロジー株の動向が今後の市場趨勢を左右する可能性がある。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、IRENの4銘柄が大きな変動を見せた。IONQとRKLBは下落、SOFIも下落した一方で、IRENは上昇した。\n\n### 📈 銘柄別分析\n- IONQ：下落7.88%。原因は、The Motley Foolの記事「Quantum Computing Stocks IonQ, Rigetti, and D-Wave Have Soared Up to 72% in 7 Trading Sessions -- and You'll Likely Regret Chasing This Rally」が影響した可能性がある。\n- SOFI：下落3.88%。Truist Securitiesのアナリストが価格目標を21ドルから20ドルに引き下げたことが要因である。\n- RKLB：下落6.04%。原因不明（関連ニュースなし）。\n- IREN：上昇7.50%。原因不明（関連ニュースなし）。\n\n軽微な変動のNBISについては、特記すべきニュースは見つからなかった。\n\n### 🔍 今後の注目ポイント\n- Quantum Computing関連銘柄の動向が今後も注目される。\n- Truist Securitiesの価格目標引き下げがSOFIの株価に与える影響。\n- IRENの株価上昇の原因が今後明らかになるかどうか。"
 }
