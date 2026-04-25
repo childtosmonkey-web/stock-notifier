@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-24",
-  "generated_at": "2026-04-24T23:09:15.010052Z",
+  "date": "2026-04-25",
+  "generated_at": "2026-04-25T23:59:47.447503Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、IRENの4銘柄が大きな変動を見せた。IONQとRKLBは下落、SOFIも下落した一方で、IRENは上昇した。\n\n### 📈 銘柄別分析\n- IONQ：下落7.88%。原因は、The Motley Foolの記事「Quantum Computing Stocks IonQ, Rigetti, and D-Wave Have Soared Up to 72% in 7 Trading Sessions -- and You'll Likely Regret Chasing This Rally」が影響した可能性がある。\n- SOFI：下落3.88%。Truist Securitiesのアナリストが価格目標を21ドルから20ドルに引き下げたことが要因である。\n- RKLB：下落6.04%。原因不明（関連ニュースなし）。\n- IREN：上昇7.50%。原因不明（関連ニュースなし）。\n\n軽微な変動のNBISについては、特記すべきニュースは見つからなかった。\n\n### 🔍 今後の注目ポイント\n- Quantum Computing関連銘柄の動向が今後も注目される。\n- Truist Securitiesの価格目標引き下げがSOFIの株価に与える影響。\n- IRENの株価上昇の原因が今後明らかになるかどうか。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、RKLB、NBIS、IRENの4銘柄が大きな変動を見せた。特にNBISは6.32%の下落を見せた。\n\n### 📈 銘柄別分析\n- IONQ：2.15%の下落。原因不明（関連ニュースなし）\n- RKLB：5.82%の下落。原因不明（関連ニュースなし）\n- NBIS：6.32%の下落。原因不明（関連ニュースなし）\n- IREN：2.65%の下落。原因不明（関連ニュースなし）\n- SOFI：0.66%の上昇。特記すべきニュースなし。\n\n### 🔍 今後の注目ポイント\n- これらの銘柄の将来的な動向に注目する必要がある。\n- 新規のニュースが発表された場合の反応を観察する。\n- 市場全体の動向がこれらの銘柄に与える影響を分析する。"
 }
