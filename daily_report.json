@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-27",
-  "generated_at": "2026-04-27T00:02:41.345469Z",
+  "date": "2026-04-28",
+  "generated_at": "2026-04-28T23:15:51.759208Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、RKLB、NBIS、IRENの4銘柄が大きな変動を見せた。IONQは下落2.15%、RKLBは下落5.82%、NBISは下落6.32%、IRENは下落2.65%だった。\n\n### 📈 銘柄別分析\n- IONQ：下落2.15%。The Motley Foolの記事「Top Quantum Computing Stocks to Buy in April」で、IonQのトラップドアイオンテクノロジーが紹介された。\n- RKLB：下落5.82%。The Motley Foolの記事「Are These 5 Stocks Your Best Buys If the Market Crashes Again?」で、Rocket Labが市場の下落時に買い入れ対象として言及された。\n- NBIS：下落6.32%。The Motley Foolの記事「Are These 5 Stocks Your Best Buys If the Market Crashes Again?」で、Nebiusが市場の下落時に買い入れ対象として言及された。\n- IREN：下落2.65%。The Motley Foolの記事「Why I Just Bought Even More of These 3 Underappreciated AI Stocks」で、IRENが未評価のAI株として紹介された。\n\n### 🔍 今後の注目ポイント\n- 4月29日にMeta、Google、Amazon、Microsoft、SOFIが決算を発表する。\n- 市場の下落時に買い入れ対象として言及された銘柄（Nebius、AMD、SOFI、Meta、Rocket Lab）に注目する。\n- Quantum Computing市場の成長が期待されることから、IonQなどの関連銘柄に注目する。"
+  "report": "### 📊 本日のサマリー\n本日はIONQ、RKLB、IRENの3銘柄が大きな変動を見せた。RKLBはジム・クレイマーによる高評価を受けたことが要因のひとつである。IRENは技術セクター全体の下落に連動した。\n\n### 📈 銘柄別分析\n- IONQ：前日比で2.69%上昇。原因不明（関連ニュースなし）。\n- RKLB：前日比で3.28%上昇。ジム・クレイマーがRKLBを「勝者」と評価したことが要因のひとつである。\n- IREN：前日比で4.50%下落。OpenAIの内部目標を達成できなかったことや中東情勢の悪化が技術セクター全体に影響を与えた。\n\n### 🔍 今後の注目ポイント\n- ジム・クレイマーの評価がRKLBの株価に与える影響。\n- OpenAIの業績が技術セクターに与える影響。\n- 中東情勢の変化が市場に及ぼす影響。"
 }
