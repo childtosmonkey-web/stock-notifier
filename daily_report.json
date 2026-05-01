@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-30",
-  "generated_at": "2026-04-30T22:15:10.216982Z",
+  "date": "2026-05-01",
+  "generated_at": "2026-05-01T22:39:51.884384Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、NBIS、IRENの4銘柄が大きな変動を見せた。SOFIは15.44%の下落、NBISは4.19%の上昇、IONQは2.25%の下落、IRENは3.56%の下落であった。\n\n### 📈 銘柄別分析\n- IONQ：2.25%の下落。原因不明（関連ニュースなし）\n- SOFI：15.44%の下落。SoFi Technologiesの株価は、市場の懸念や短期売りによる影響を受けた可能性がある。\n- NBIS：4.19%の上昇。Nebius GroupのAIデータセンターへの需要の増加やMicrosoftとMetaとの契約が要因のひとつとみられる。\n- IREN：3.56%の下落。原因不明（関連ニュースなし）\n\nRKLBは2.00%の下落であったが、特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n- AI関連株の動向：NvidiaやNebius GroupなどのAI関連株が今後も注目される。\n- SoFi Technologiesの株価動向：市場の懸念や短期売りによる影響が今後も続くかどうかが注目される。\n- データセンター需要の増加：AIの普及に伴うデータセンター需要の増加が、Nebius Groupなどの関連株に与える影響が注目される。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。IONQは7.15%上昇、SOFIは3.70%上昇、RKLBは7.13%上昇、NBISは2.10%下落、IRENは6.18%上昇した。\n\n### 📈 銘柄別分析\n- IONQ：7.15%上昇。DARPA政府契約の発表やCEOの株主向け書簡が要因とみられる。\n- SOFI：3.70%上昇。強力な第一四半期の業績や「everything app」の成長が要因とみられる。\n- RKLB：7.13%上昇。原因不明（関連ニュースなし）。\n- NBIS：2.10%下落。Eigen AIの買収によるAI推論能力の強化が要因とみられるが、下落の原因は不明。\n- IREN：6.18%上昇。Sweetwater 1データセンターの成功的な電力投入が要因とみられる。\n\n### 🔍 今後の注目ポイント\n- IONQのDARPA契約による将来の成長。\n- SOFIの「everything app」による収益の増加。\n- NBISのEigen AI買収によるAI技術の進化。"
 }
