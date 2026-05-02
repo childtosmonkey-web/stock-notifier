@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-01",
-  "generated_at": "2026-05-01T22:39:51.884384Z",
+  "date": "2026-05-02",
+  "generated_at": "2026-05-02T23:30:36.883284Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。IONQは7.15%上昇、SOFIは3.70%上昇、RKLBは7.13%上昇、NBISは2.10%下落、IRENは6.18%上昇した。\n\n### 📈 銘柄別分析\n- IONQ：7.15%上昇。DARPA政府契約の発表やCEOの株主向け書簡が要因とみられる。\n- SOFI：3.70%上昇。強力な第一四半期の業績や「everything app」の成長が要因とみられる。\n- RKLB：7.13%上昇。原因不明（関連ニュースなし）。\n- NBIS：2.10%下落。Eigen AIの買収によるAI推論能力の強化が要因とみられるが、下落の原因は不明。\n- IREN：6.18%上昇。Sweetwater 1データセンターの成功的な電力投入が要因とみられる。\n\n### 🔍 今後の注目ポイント\n- IONQのDARPA契約による将来の成長。\n- SOFIの「everything app」による収益の増加。\n- NBISのEigen AI買収によるAI技術の進化。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。IONQは2.39%上昇、SOFIは2.05%上昇、RKLBは4.48%下落、NBISは11.76%上昇した。\n\n### 📈 銘柄別分析\n- IONQ：2.39%上昇。変動の原因は、Quantum Computingの分野で進展が見られたことによる。\n- SOFI：2.05%上昇。変動の原因は、SoFi Technologiesのレコードな成長が報告されたことによる。\n- RKLB：4.48%下落。原因不明（関連ニュースなし）。\n- NBIS：11.76%上昇。変動の原因は、Nebius GroupのEigenによるAI推論の強化が期待されたことによる。\n\n### 🔍 今後の注目ポイント\n- IONQのQuantum Computing分野での進展が続くか。\n- SOFIの成長が継続するか。\n- RKLBの下落の原因が明らかになるか。"
 }
