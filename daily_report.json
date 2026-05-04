@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-03",
-  "generated_at": "2026-05-03T23:31:41.428361Z",
+  "date": "2026-05-04",
+  "generated_at": "2026-05-04T23:43:21.013069Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。IONQとNBISは上昇、SOFIも上昇、RKLBは下落した。\n\n### 📈 銘柄別分析\n- IONQ：前日比上昇2.39%。The Motley Foolの記事「3 Quantum Computing Stocks That Have Massive Upside in May」で、IonQの世界レコードの精度とDARPA契約が紹介されたことが要因とみられる。\n- SOFI：前日比上昇2.05%。The Motley Foolの記事「What's Going on With SoFi Stock?」では、SoFi Technologiesのバランスシート拡大が取り上げられていたが、具体的な原因は不明。\n- RKLB：前日比下落4.48%。原因不明（関連ニュースなし）。\n- NBIS：前日比上昇11.76%。The Motley Foolの記事「3 AI Stocks Crushing Nvidia This Year」や「Got $1,000? Here Are Three Incredible AI Stocks to Get Started」で、NebiusのAIインフラストラクチャ需要の拡大やMeta/Nvidiaとの契約が紹介されたことが要因とみられる。\n\n### 🔍 今後の注目ポイント\n- IONQとNBISのAIおよび量子コンピューティング市場への影響。\n- SOFIのバランスシート拡大が将来の業績に与える影響。\n- RKLBの下落の要因が将来明らかになるかどうか。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。IONQは上昇2.39%、SOFIは上昇2.05%、RKLBは下落4.48%、NBISは上昇11.76%だった。\n\n### 📈 銘柄別分析\n- IONQ：上昇2.39%。Wedbushのアナリストが60ドルへのプライスターゲットを維持し、InSAR製品の発売が要因となった。\n- SOFI：上昇2.05%。Citigroupのアナリストが30ドルへのプライスターゲットを設定し、記録的な第1四半期の収益が要因となった。\n- RKLB：下落4.48%。原因不明（関連ニュースなし）。\n- NBIS：上昇11.76%。Eigen AIの買収とAIクラウドサービスへの強化が要因となった。\n\n軽微な変動の銘柄であるIRENは、上昇0.33%で、Sweetwater 1サイトの成功したエネルギー供給が要因となった。\n\n### 🔍 今後の注目ポイント\n- IONQのInSAR製品の市場への影響。\n- SOFIの収益の持続可能性。\n- NBISのAIクラウドサービスへの買収による影響。"
 }
