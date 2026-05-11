@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-09",
-  "generated_at": "2026-05-09T23:35:43.227960Z",
+  "date": "2026-05-11",
+  "generated_at": "2026-05-11T22:37:52.377004Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、RKLB、NBIS、IRENの4銘柄が大きな変動を見せた。特にRKLBは34.22%の急上昇を見せた。\n\n### 📈 銘柄別分析\n- IONQ：上昇3.27%。IonQが量子コンピューティングにおける重要なブレークスルーを達成し、Nvidiaの新しい動向も注目された。\n- RKLB：上昇34.22%。Rocket Labの株価は、31件の新規契約を獲得し、米国国防省のSpace Based Interceptorプログラムに選定されたことが要因。\n- NBIS：下落4.18%。原因不明（関連ニュースなし）。\n- IREN：上昇7.65%。IREN LimitedのQ3 2026決算発表が要因のひとつとみられる。\n\nSOFIについては、特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n1. 量子コンピューティング分野の進展と、IonQやNvidiaなどの主要企業の動向。\n2. Rocket Labの将来的な契約獲得と、宇宙関連事業への進出。\n3. IREN Limitedの将来的な財務動向と、業績の推移。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、RKLB、NBIS、IRENの4銘柄が大きな変動を見せた。IONQは上昇3.27%、RKLBは上昇34.22%、NBISは下落4.18%、IRENは上昇7.65%だった。\n\n### 📈 銘柄別分析\n- IONQ：上昇3.27%。IonQの株価は、SkyWater Technologyとの合併契約の承認や強力なQ1の業績発表により上昇した。\n- RKLB：上昇34.22%。Rocket Labの株価は、Needhamによるプライスターゲットの引き上げやQ1の業績が好調だったことが要因である。\n- NBIS：下落4.18%。原因不明（関連ニュースなし）。\n- IREN：上昇7.65%。IRENの株価は、Nvidiaとの契約やMacquarieによるプライスターゲットの引き上げが要因である。\n\n### 🔍 今後の注目ポイント\n- IonQとSkyWater Technologyの合併契約の進展。\n- Rocket Labの将来的な成長見通しとNeedhamの分析。\n- IRENのNvidiaとの契約がもたらす影響と将来的な株価の動向。"
 }
