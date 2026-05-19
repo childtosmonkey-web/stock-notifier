@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-18",
-  "generated_at": "2026-05-18T23:45:37.459673Z",
+  "date": "2026-05-19",
+  "generated_at": "2026-05-19T22:06:19.983760Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、IRENの4銘柄が大きな変動を見せた。IONQは9.61%下落、SOFIは2.56%下落、RKLBは5.87%下落、IRENは9.35%下落した。\n\n### 📈 銘柄別分析\n- IONQ：9.61%下落。IonQ, Inc. (IONQ)がJ.P. Morgan 54th Annual Global Technology, Media and Communications Conferenceでプレゼンテーションを行ったが、具体的な要因は不明。\n- SOFI：2.56%下落。SoFi Technologiesの株価は、記録的な成長を背景に、厳しいガイダンスに直面している。\n- RKLB：5.87%下落。Rocket Labの株価は、SpaceXのIPO発表により一時的に上昇したが、後に下落した。\n- IREN：9.35%下落。IREN LimitedがAwakenを買収したが、具体的な要因は不明。\n\nNBISは0.55%下落したが、特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n- IonQ, Inc. (IONQ)のプレゼンテーションの詳細が発表されるかどうか。\n- SoFi Technologiesのガイダンスが市場に与える影響。\n- Rocket Labの株価がSpaceXのIPOに伴う動向を見せるかどうか。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、RKLB、NBIS、IRENの4銘柄が大きな変動を見せた。IONQは下落5.08%、RKLBは上昇5.12%、NBISは下落9.13%、IRENは下落4.68%だった。\n\n### 📈 銘柄別分析\n- IONQ：下落5.08%。原因は、Rigetti Computingの株価の下落や、競争、収益の不安定さなどが要因となっている可能性がある。\n- RKLB：上昇5.12%。原因不明（関連ニュースなし）。\n- NBIS：下落9.13%。DA Davidsonによる評価の引き下げや、GoogleとBlackstoneのAIインフラストラクチャーへの参入が要因となっている可能性がある。\n- IREN：下落4.68%。Nebius Groupとの比較で、IRENの評価が高いと見なされている可能性がある。\n\nSOFIは軽微な変動で、上昇0.64%だった。特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n- AIインフラストラクチャーへの投資の動向\n- 企業の収益発表とその影響\n- 競争の激化と企業の対応"
 }
