@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-22",
-  "generated_at": "2026-05-22T22:48:59.780345Z",
+  "date": "2026-05-23",
+  "generated_at": "2026-05-23T22:43:07.295135Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、RKLB、NBIS、IRENの4銘柄が大きな変動を見せた。IONQは12.24%上昇、RKLBは6.58%下落、NBISは14.65%上昇、IRENは10.15%上昇した。\n\n### 📈 銘柄別分析\n- IONQ：12.24%上昇。原因は、インスティチューショナル投資家が量子コンピューティングへの投資を始めたことによる。\n- RKLB：6.58%下落。原因不明（関連ニュースなし）。\n- NBIS：14.65%上昇。原因は、Nebius GroupとBloom Energyの戦略的パートナーシップによる。\n- IREN：10.15%上昇。原因は、Nvidiaとの5年間のパートナーシップによる。\n\nSOFIは0.25%下落したが、特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n- 量子コンピューティングへの投資の動向\n- AI関連企業のパートナーシップや契約の動向\n- Nebius GroupとBloom Energyのパートナーシップの進展状況"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、RKLB、NBIS、IRENの4銘柄が大きな変動を見せた。IONQは8.07%上昇、RKLBは8.22%上昇、NBISは2.35%下落、IRENは2.12%下落した。\n\n### 📈 銘柄別分析\n- IONQ：8.07%上昇。SeekingAlphaの記事「IonQ: Misleading Quantum Growth」ではIONQの株価が高すぎると指摘されたが、別の記事「Quantum Computing Company IonQ Is A Buy (Technical Analysis)」では技術分析に基づいて買いとしている。\n- RKLB：8.22%上昇。SpaceXのIPO予想やStarlinkの衛星ブロードバンド事業に関するニュースが影響した可能性がある。\n- NBIS：2.35%下落。SeekingAlphaの記事「Nebius: My Best AI Infrastructure Pick Gets A Strong Buy Upgrade」ではNBISをストロング・バイと評価しているが、下落した。\n- IREN：2.12%下落。原因不明（関連ニュースなし）。\n- SOFI：0.19%下落。軽微な変動だが、SeekingAlphaの記事「SoFi Is Down 50% - I'm Buying More」ではSOFIをストロング・バイとしている。\n\n### 🔍 今後の注目ポイント\n- SpaceXのIPO予想やStarlinkの進展がRKLBに与える影響。\n- AI関連株の動向とNBIS、IRENへの影響。\n- IONQの技術分析と将来の株価の動向。"
 }
