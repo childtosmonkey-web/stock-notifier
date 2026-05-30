@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-29",
-  "generated_at": "2026-05-29T22:26:04.113221Z",
+  "date": "2026-05-30",
+  "generated_at": "2026-05-30T22:47:13.196539Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、NBIS、IRENの4銘柄が大きな変動を見せた。IONQとSOFIは上昇、NBISも上昇し、IRENは下落した。\n\n### 📈 銘柄別分析\n- IONQ：上昇7.25%。原因は、SeekingAlphaの記事「As Quantum Debates Rages On, IonQ Is Moving From The Lab To Commerce」で、IONQが研究開発から商業化に移行していることが注目された。\n- SOFI：上昇4.95%。原因不明（関連ニュースなし）。\n- NBIS：上昇8.62%。原因は、SeekingAlphaの記事「The Smartest AI Money Is Buying Nebius」で、Microsoft、Meta、NvidiaがNebiusを運用的におよび財政的に検証したことが注目された。\n- IREN：下落5.59%。原因不明（関連ニュースなし）。\n\nRKLBは軽微な変動で、下落1.46%。特記すべきニュースはなし。\n\n### 🔍 今後の注目ポイント\n- 量子コンピューティング分野の進展がIONQやNBISの株価に与える影響。\n- SOFIとIRENの株価変動の原因となるニュースが将来に出るかどうか。\n- RKLBの事業多様化が将来の株価に与える影響。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。特にSOFIは7.37%の上昇を見せた。\n\n### 📈 銘柄別分析\n- IONQ: 2.75%の上昇。原因不明（関連ニュースなし）\n- SOFI: 7.37%の上昇。原因不明（関連ニュースなし）\n- RKLB: 3.07%の下落。SpaceX IPOの前提でTop space ETFsが強い流入を見せているがリスクも残っていることが要因のひとつとみられる。\n- NBIS: 2.10%の上昇。原因不明（関連ニュースなし）\n\n### 🔍 今後の注目ポイント\n- SpaceX IPOの進展がRKLBなどの関連銘柄に与える影響に注目。\n- IONQ、SOFI、NBISの変動の原因となるニュースが将来に出るかどうか。\n- Top space ETFsへの流入がRKLBなどの株価に与える影響の継続性。"
 }
