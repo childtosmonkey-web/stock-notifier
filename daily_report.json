@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-11",
-  "generated_at": "2026-06-11T22:47:38.369168Z",
+  "date": "2026-06-12",
+  "generated_at": "2026-06-12T22:25:04.145153Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、SOFI、RKLB、NBIS、IRENの4銘柄が大きな変動を見せた。特に、RKLBはSpaceXのIPOに先立っての「halo trade」の影響を受けた。\n\n### 📈 銘柄別分析\n- SOFI：下落3.64%。原因不明（関連ニュースなし）\n- RKLB：下落2.94%。SpaceXのIPOに先立っての「halo trade」の影響を受けた。\n- NBIS：下落3.83%。原因不明（関連ニュースなし）\n- IREN：下落4.63%。原因不明（関連ニュースなし）\n\nIONQは軽微な変動（下落0.11%）で、特記すべきニュースはなし。\n\n### 🔍 今後の注目ポイント\n- SpaceXのIPOが市場に与える影響\n- Space関連銘柄への投資の動向\n- これらの要因がRKLBなどの株価に与える影響"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。特に、IRENは10.07%の上昇を見せた。\n\n### 📈 銘柄別分析\n- IONQ：2.40%の上昇。SkyWater Technologyとの合併や、量子コンピューティングの動向に関するニュースが要因となっている。\n- SOFI：5.04%の上昇。SoFiの月次配当や、SoFi Technologies, Inc.の株式見通しのニュースが要因となっている。\n- RKLB：9.26%の上昇。SpaceXのIPOや、Rocket LabのNasdaq-100 Indexへの追加が要因となっている。\n- NBIS：4.98%の上昇。Nebius GroupのNasdaq-100 Indexへの追加が要因となっている。\n- IREN：10.07%の上昇。原因不明（関連ニュースなし）。\n\n### 🔍 今後の注目ポイント\n- 量子コンピューティングの動向とその影響を受けるIONQなどの銘柄。\n- SpaceXのIPOとその影響を受けるRKLBなどの銘柄。\n- Nasdaq-100 Indexへの追加とその影響を受けるNBISなどの銘柄。"
 }
