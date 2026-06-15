@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-14",
-  "generated_at": "2026-06-14T22:04:06.777103Z",
+  "date": "2026-06-15",
+  "generated_at": "2026-06-15T22:10:27.903216Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日はRKLB、NBIS、IRENの3銘柄が大きな変動を見せた。RKLBは10.79%の下落、NBISは4.55%の上昇、IRENは5.40%の上昇であった。\n\n### 📈 銘柄別分析\n- RKLB：10.79%の下落。原因不明（関連ニュースなし）\n- NBIS：4.55%の上昇。The Motley Foolの記事「Forget SpaceX: 3 Stocks That Are Brilliant Buys Right Now」で、Nebius GroupがAmazonやMeta Platformsとともに優れた投資機会であると紹介されたことが要因のひとつとみられる。\n- IREN：5.40%の上昇。原因不明（関連ニュースなし）\n- IONQとSOFIは軽微な変動で、特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n- Nebius Group（NBIS）が優れた投資機会であるとみなされる背景にある要因の進展。\n- RKLBとIRENの下落・上昇の原因となるニュースの出現。\n- スペース関連株の動向とそれに伴う投資機会の変化。"
+  "report": "### 📊 本日のサマリー\n本日はRKLB、NBIS、IRENの3銘柄が大きな変動を見せた。RKLBは10.79%の下落、NBISは4.55%の上昇、IRENは5.40%の上昇であった。\n\n### 📈 銘柄別分析\n- RKLB：10.79%の下落。SpaceXのIPOによる市場の動きや、KeyBanc Capital Marketsによるアップグレードが要因とみられる。\n- NBIS：4.55%の上昇。原因不明（関連ニュースなし）。\n- IREN：5.40%の上昇。Nostrum Groupの買収によるAIクラウドプラットフォームの拡大が要因とみられる。\n\n### 🔍 今後の注目ポイント\n- SpaceXのIPOが市場に与える影響の継続。\n- RKLBのアップグレードによる株価への影響。\n- IRENのNostrum Group買収によるビジネス展開の進展。"
 }
