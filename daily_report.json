@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-15",
-  "generated_at": "2026-06-15T22:10:27.903216Z",
+  "date": "2026-06-16",
+  "generated_at": "2026-06-16T22:13:30.220202Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日はRKLB、NBIS、IRENの3銘柄が大きな変動を見せた。RKLBは10.79%の下落、NBISは4.55%の上昇、IRENは5.40%の上昇であった。\n\n### 📈 銘柄別分析\n- RKLB：10.79%の下落。SpaceXのIPOによる市場の動きや、KeyBanc Capital Marketsによるアップグレードが要因とみられる。\n- NBIS：4.55%の上昇。原因不明（関連ニュースなし）。\n- IREN：5.40%の上昇。Nostrum Groupの買収によるAIクラウドプラットフォームの拡大が要因とみられる。\n\n### 🔍 今後の注目ポイント\n- SpaceXのIPOが市場に与える影響の継続。\n- RKLBのアップグレードによる株価への影響。\n- IRENのNostrum Group買収によるビジネス展開の進展。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。特にNBISは11.93%の上昇を見せた。\n\n### 📈 銘柄別分析\n- IONQ：上昇5.76%、原因不明（関連ニュースなし）\n- SOFI：上昇3.32%、The Motley Foolの記事「Down 36% in 2026, Is SoFi Stock Undervalued?」が要因の1つと考えられる\n- RKLB：上昇6.70%、SpaceXのIPOが影響した可能性があるが、直接的な関連ニュースは見つからなかった\n- NBIS：上昇11.93%、Nebius Group N.V.のNasdaq-100 Indexへの追加とEigen AIの買収完了が要因\n\nIRENは軽微な変動で、特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n- SpaceXのIPOが市場に与える影響\n- Nasdaq-100 Indexへの追加がNBISの株価に与える影響\n- SOFIの株価が将来どう変化するか"
 }
