@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-16",
-  "generated_at": "2026-06-16T22:13:30.220202Z",
+  "date": "2026-06-17",
+  "generated_at": "2026-06-17T23:16:34.214827Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。特にNBISは11.93%の上昇を見せた。\n\n### 📈 銘柄別分析\n- IONQ：上昇5.76%、原因不明（関連ニュースなし）\n- SOFI：上昇3.32%、The Motley Foolの記事「Down 36% in 2026, Is SoFi Stock Undervalued?」が要因の1つと考えられる\n- RKLB：上昇6.70%、SpaceXのIPOが影響した可能性があるが、直接的な関連ニュースは見つからなかった\n- NBIS：上昇11.93%、Nebius Group N.V.のNasdaq-100 Indexへの追加とEigen AIの買収完了が要因\n\nIRENは軽微な変動で、特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n- SpaceXのIPOが市場に与える影響\n- Nasdaq-100 Indexへの追加がNBISの株価に与える影響\n- SOFIの株価が将来どう変化するか"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、IRENの4銘柄が大きな変動を見せた。IONQは8.37%の下落、SOFIは3.39%の上昇、RKLBは4.23%の下落、IRENは2.74%の下落だった。\n\n### 📈 銘柄別分析\n- IONQ：8.37%の下落。原因は、The Motley Foolの記事「3 Quantum Computing Stocks Down Sharply -- but 1 Offers Exceptional Value」で、Quantum computing stocksがvaluation resetしたことが要因とみられる。\n- SOFI：3.39%の上昇。原因は、SoFi CEOのAnthony Notoが自社株を買い続けていることや、SeekingAlphaの記事「SOFI: The Market Distrusts The Book, The Numbers Say Otherwise」で、SoFiの財務実績が好調であることが要因とみられる。\n- RKLB：4.23%の下落。原因は、SpaceXのIPOによる影響や、SeekingAlphaの記事「Rocket Lab: The End Of The SpaceX Proxy」で、Rocket Labの株価がSpaceXのIPOに伴う売り圧力を受けたことが要因とみられる。\n- IREN：2.74%の下落。原因不明（関連ニュースなし）。\n\n### 🔍 今後の注目ポイント\n- Quantum computingの分野での動向がIONQの株価に与える影響。\n- SOFIのCEOによる自社株の買い続けが株価に与える影響。\n- SpaceXのIPOがRKLBなどの宇宙関連株に与える影響。"
 }
