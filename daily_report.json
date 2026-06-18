@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-17",
-  "generated_at": "2026-06-17T23:16:34.214827Z",
+  "date": "2026-06-18",
+  "generated_at": "2026-06-18T22:51:55.479830Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、IRENの4銘柄が大きな変動を見せた。IONQは8.37%の下落、SOFIは3.39%の上昇、RKLBは4.23%の下落、IRENは2.74%の下落だった。\n\n### 📈 銘柄別分析\n- IONQ：8.37%の下落。原因は、The Motley Foolの記事「3 Quantum Computing Stocks Down Sharply -- but 1 Offers Exceptional Value」で、Quantum computing stocksがvaluation resetしたことが要因とみられる。\n- SOFI：3.39%の上昇。原因は、SoFi CEOのAnthony Notoが自社株を買い続けていることや、SeekingAlphaの記事「SOFI: The Market Distrusts The Book, The Numbers Say Otherwise」で、SoFiの財務実績が好調であることが要因とみられる。\n- RKLB：4.23%の下落。原因は、SpaceXのIPOによる影響や、SeekingAlphaの記事「Rocket Lab: The End Of The SpaceX Proxy」で、Rocket Labの株価がSpaceXのIPOに伴う売り圧力を受けたことが要因とみられる。\n- IREN：2.74%の下落。原因不明（関連ニュースなし）。\n\n### 🔍 今後の注目ポイント\n- Quantum computingの分野での動向がIONQの株価に与える影響。\n- SOFIのCEOによる自社株の買い続けが株価に与える影響。\n- SpaceXのIPOがRKLBなどの宇宙関連株に与える影響。"
+  "report": "### 📊 本日のサマリー\n本日はIONQ、RKLB、NBISの3銘柄が大きな変動を見せた。IONQは下落2.44%、RKLBは上昇3.20%、NBISは上昇5.96%だった。\n\n### 📈 銘柄別分析\n- IONQ：下落2.44%。原因は、The Motley Foolの記事「Xanadu Quantum vs. IonQ: The Better Quantum Computing Stock Buy for 2026」やInvesting.comの記事「2 Quantum Stocks Are Drawing Capital as AI Infrastructure Hits a Wall」が要因の1つとみられる。\n- RKLB：上昇3.20%。SpaceXのIPOにより、商業宇宙経済におけるサプライヤーやパートナーへの機会が増加したことが要因とみられる。\n- NBIS：上昇5.96%。The Motley Foolの記事「Nebius Is Up 210% This Year. Here's Why There's Still Room for More Upside in 2026.」やSeekingAlphaの記事「Nebius: The Road To $400」が要因の1つとみられる。\n\n### 🔍 今後の注目ポイント\n- IONQとXanadu Quantum Technologiesの比較が市場で注目される。\n- SpaceXのIPOが商業宇宙経済に与える影響が今後も注目される。\n- NBISの成長が継続するかが今後の焦点となる。"
 }
