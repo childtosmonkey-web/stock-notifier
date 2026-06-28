@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-27",
-  "generated_at": "2026-06-27T22:53:03.112250Z",
+  "date": "2026-06-28",
+  "generated_at": "2026-06-28T22:53:28.834450Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。特にNBISは6.36%の下落を見せ、注目を集めた。\n\n### 📈 銘柄別分析\n- IONQ：2.47%の下落。IonQの株価は高額な評価が反映されていると指摘されており、潜在的な下落要因となっている。\n- SOFI：3.35%の上昇。原因不明（関連ニュースなし）。\n- RKLB：4.77%の上昇。NASAとの契約やロケット打ち上げの成功が要因となっている可能性がある。\n- NBIS：6.36%の下落。原因不明（関連ニュースなし）。\n\n### 🔍 今後の注目ポイント\n- IONQの評価が下方修正される可能性。\n- RKLBのNASAとの契約が将来の業績に与える影響。\n- SOFIとNBISの変動要因の特定。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。IONQは下落2.47%、SOFIは上昇3.35%、RKLBは上昇4.77%、NBISは下落6.36%だった。\n\n### 📈 銘柄別分析\n- IONQ：下落2.47%。The Motley Foolの記事「Better Quantum Computing Stock: Alphabet vs. IonQ」が原因とみられる。\n- SOFI：上昇3.35%。SoFi TechnologiesがAI-powered金融アシスタント「SoFi Coach」を発表したことが要因とみられる。\n- RKLB：上昇4.77%。原因不明（関連ニュースなし）。\n- NBIS：下落6.36%。原因不明（関連ニュースなし）。\n\nIRENは軽微な変動で、下落1.11%だった。The Motley Foolの記事「3 Artificial Intelligence (AI) Stocks I'd Buy Now and Never Sell」では、IRENのデータセンター容量拡大が高く評価された。\n\n### 🔍 今後の注目ポイント\n- IONQとAlphabetの量子コンピューティング技術の進展が注目される。\n- SOFIの「SoFi Coach」がユーザーにどのような影響を与えるかが注目される。\n- RKLBとNBISの将来的な動向は、関連ニュースの出現を待ってから判断する必要がある。"
 }
