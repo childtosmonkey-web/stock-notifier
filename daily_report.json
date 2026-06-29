@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-28",
-  "generated_at": "2026-06-28T22:53:28.834450Z",
+  "date": "2026-06-29",
+  "generated_at": "2026-06-29T22:04:57.515184Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。IONQは下落2.47%、SOFIは上昇3.35%、RKLBは上昇4.77%、NBISは下落6.36%だった。\n\n### 📈 銘柄別分析\n- IONQ：下落2.47%。The Motley Foolの記事「Better Quantum Computing Stock: Alphabet vs. IonQ」が原因とみられる。\n- SOFI：上昇3.35%。SoFi TechnologiesがAI-powered金融アシスタント「SoFi Coach」を発表したことが要因とみられる。\n- RKLB：上昇4.77%。原因不明（関連ニュースなし）。\n- NBIS：下落6.36%。原因不明（関連ニュースなし）。\n\nIRENは軽微な変動で、下落1.11%だった。The Motley Foolの記事「3 Artificial Intelligence (AI) Stocks I'd Buy Now and Never Sell」では、IRENのデータセンター容量拡大が高く評価された。\n\n### 🔍 今後の注目ポイント\n- IONQとAlphabetの量子コンピューティング技術の進展が注目される。\n- SOFIの「SoFi Coach」がユーザーにどのような影響を与えるかが注目される。\n- RKLBとNBISの将来的な動向は、関連ニュースの出現を待ってから判断する必要がある。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。特にRKLBは、Iridium Communicationsの買収により大きな上昇を見せた。\n\n### 📈 銘柄別分析\n- IONQ：下落2.47%。原因は、Infleqtionのプレミアム評価がエラーの余地を少なくしたため。\n- SOFI：上昇3.35%。原因は、S&P 500へのインデックス登録の可能性が高まったため。\n- RKLB：上昇4.77%。原因は、Iridium Communicationsの買収により衛星事業を拡大したため。\n- NBIS：下落6.36%。原因不明（関連ニュースなし）。\n\n軽微な変動の銘柄であるIRENは、Russell 1000 Indexに追加された。\n\n### 🔍 今後の注目ポイント\n- RKLBのIridium Communications買収が将来の業績に与える影響。\n- SOFIのS&P 500へのインデックス登録が決定するかどうか。\n- NBISの下落の原因が今後明らかになるかどうか。"
 }
