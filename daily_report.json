@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-29",
-  "generated_at": "2026-06-29T22:04:57.515184Z",
+  "date": "2026-06-30",
+  "generated_at": "2026-06-30T23:04:11.487767Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。特にRKLBは、Iridium Communicationsの買収により大きな上昇を見せた。\n\n### 📈 銘柄別分析\n- IONQ：下落2.47%。原因は、Infleqtionのプレミアム評価がエラーの余地を少なくしたため。\n- SOFI：上昇3.35%。原因は、S&P 500へのインデックス登録の可能性が高まったため。\n- RKLB：上昇4.77%。原因は、Iridium Communicationsの買収により衛星事業を拡大したため。\n- NBIS：下落6.36%。原因不明（関連ニュースなし）。\n\n軽微な変動の銘柄であるIRENは、Russell 1000 Indexに追加された。\n\n### 🔍 今後の注目ポイント\n- RKLBのIridium Communications買収が将来の業績に与える影響。\n- SOFIのS&P 500へのインデックス登録が決定するかどうか。\n- NBISの下落の原因が今後明らかになるかどうか。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、RKLB、NBIS、IRENの4銘柄が大きな変動を見せた。IONQは9.27%上昇、RKLBは15.93%上昇、NBISは8.68%上昇、IRENは2.75%下落した。\n\n### 📈 銘柄別分析\n- IONQ：9.27%上昇。原因不明（関連ニュースなし）\n- RKLB：15.93%上昇。Rocket LabがIridium Communicationsを80億ドルで買収したことが要因。\n- NBIS：8.68%上昇。Nebiusの成長テーマが買われ、上昇した。\n- IREN：2.75%下落。原因不明（関連ニュースなし）\n\nSOFIは軽微な変動で、1.73%上昇した。Elon MuskのX MoneyやRobinhoodのTrump Accountsアプリの発表が要因のひとつとみられる。\n\n### 🔍 今後の注目ポイント\n- Rocket LabのIridium Communications買収が将来の成長にどのような影響を与えるか。\n- Nebiusの成長テーマが継続するか。\n- IONQとIRENの下落要因が明らかになるか。"
 }
