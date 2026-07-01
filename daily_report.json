@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-30",
-  "generated_at": "2026-06-30T23:04:11.487767Z",
+  "date": "2026-07-01",
+  "generated_at": "2026-07-01T22:13:30.570477Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、RKLB、NBIS、IRENの4銘柄が大きな変動を見せた。IONQは9.27%上昇、RKLBは15.93%上昇、NBISは8.68%上昇、IRENは2.75%下落した。\n\n### 📈 銘柄別分析\n- IONQ：9.27%上昇。原因不明（関連ニュースなし）\n- RKLB：15.93%上昇。Rocket LabがIridium Communicationsを80億ドルで買収したことが要因。\n- NBIS：8.68%上昇。Nebiusの成長テーマが買われ、上昇した。\n- IREN：2.75%下落。原因不明（関連ニュースなし）\n\nSOFIは軽微な変動で、1.73%上昇した。Elon MuskのX MoneyやRobinhoodのTrump Accountsアプリの発表が要因のひとつとみられる。\n\n### 🔍 今後の注目ポイント\n- Rocket LabのIridium Communications買収が将来の成長にどのような影響を与えるか。\n- Nebiusの成長テーマが継続するか。\n- IONQとIRENの下落要因が明らかになるか。"
+  "report": "### 📊 本日のサマリー\n本日はRKLBとNBISが大きな変動を見せた。RKLBは上昇3.71%、NBISは上昇5.75%だった。\n\n### 📈 銘柄別分析\n- RKLB：上昇3.71%。Rocket Labの8億ドルのIridium Communications買収が要因のひとつとみられる。\n- NBIS：上昇5.75%。MetaのAIクラウド市場への参入計画が発表され、AIインフラストラクチャ企業への競争の激化が懸念されたが、NBISへの直接的な影響は不明。\n\n### 🔍 今後の注目ポイント\n- MetaのAIクラウド市場への参入が進展するか。\n- RKLBのIridium Communications買収が将来の事業展開に与える影響。\n- AIインフラストラクチャ企業への競争の激化が市場に与える影響。"
 }
