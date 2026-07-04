@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-03",
-  "generated_at": "2026-07-03T22:54:02.289739Z",
+  "date": "2026-07-04",
+  "generated_at": "2026-07-04T22:46:31.556465Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日はIONQ、NBIS、IRENの3銘柄が大きな変動を見せた。IONQは下落4.44%、NBISは下落5.92%、IRENは下落10.39%だった。\n\n### 📈 銘柄別分析\n- IONQ：下落4.44%、原因不明（関連ニュースなし）\n- NBIS：下落5.92%、ニュースでは直接の原因は見つからなかったが、関連ニュースとしてCRWVの株価の動きやNvidiaの評価が言及されている。\n- IREN：下落10.39%、原因不明（関連ニュースなし）\n\n軽微な変動の銘柄では、SOFIに関してはDonald TrumpとElon Muskの関係が話題に上がったが、直接的な影響は見られない。\n\n### 🔍 今後の注目ポイント\n- IONQとIRENの下落の原因が今後明らかになるか。\n- NBISに関連するCRWVやNvidiaの動向が今後の株価に与える影響。\n- SOFIやRKLBの成長株としての評価が今後の市場動向にどのように影響するか。"
+  "report": "### 📊 本日のサマリー\n本日はIONQ、NBIS、IRENの3銘柄が大きな変動を見せた。NBISはAI Cloud 3.6のリリースや急成長が注目された。\n\n### 📈 銘柄別分析\n- IONQ：下落4.44%。原因不明（関連ニュースなし）。\n- NBIS：下落5.92%。Nebius AI Cloud 3.6のリリースや急成長がニュースで注目された。\n- IREN：下落10.39%。原因不明（関連ニュースなし）。\n- RKLB：上昇0.39%。Rocket LabのIridium Communicationsの買収が注目された。\n\n### 🔍 今後の注目ポイント\n- Nebius GroupのAI Cloud 3.6の進展が注目される。\n- Rocket LabのIridium Communications買収による影響が見られる。\n- 大きな変動を見せたIONQとIRENの将来的な動向が注目される。"
 }
