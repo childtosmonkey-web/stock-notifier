@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-04",
-  "generated_at": "2026-07-04T22:46:31.556465Z",
+  "date": "2026-07-05",
+  "generated_at": "2026-07-05T22:48:43.092258Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日はIONQ、NBIS、IRENの3銘柄が大きな変動を見せた。NBISはAI Cloud 3.6のリリースや急成長が注目された。\n\n### 📈 銘柄別分析\n- IONQ：下落4.44%。原因不明（関連ニュースなし）。\n- NBIS：下落5.92%。Nebius AI Cloud 3.6のリリースや急成長がニュースで注目された。\n- IREN：下落10.39%。原因不明（関連ニュースなし）。\n- RKLB：上昇0.39%。Rocket LabのIridium Communicationsの買収が注目された。\n\n### 🔍 今後の注目ポイント\n- Nebius GroupのAI Cloud 3.6の進展が注目される。\n- Rocket LabのIridium Communications買収による影響が見られる。\n- 大きな変動を見せたIONQとIRENの将来的な動向が注目される。"
+  "report": "### 📊 本日のサマリー\n本日はIONQ、NBIS、IRENの3銘柄で大きな変動が見られた。IONQとIRENは下落4.44%と10.39%で、NBISも下落5.92%だった。\n\n### 📈 銘柄別分析\n- IONQ：下落4.44%、原因不明（関連ニュースなし）\n- NBIS：下落5.92%、REITWeek 2026でのREITsの6〜7%の収益成長予測が要因のひとつかもしれない。\n- IREN：下落10.39%、原因不明（関連ニュースなし）\n- SOFI：下落1.08%、Cathie WoodのArk Investによる購入やSoFi Technologiesの銀行チャーター取得による財務運営の変化が軽微な変動に影響した可能性がある。\n\n### 🔍 今後の注目ポイント\n- REITsの収益成長予測が市場に与える影響\n- SoFi Technologiesの銀行チャーターが将来の財務運営に与える影響\n- IONQとIRENの下落の原因となる潜在的な要因の発見"
 }
