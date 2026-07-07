@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-06",
-  "generated_at": "2026-07-06T22:57:00.768910Z",
+  "date": "2026-07-07",
+  "generated_at": "2026-07-07T22:06:04.019829Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日はIONQ、NBIS、IRENの3銘柄が大きな変動を見せた。IONQは下落4.44%、NBISは下落5.92%、IRENは下落10.39%だった。\n\n### 📈 銘柄別分析\n- IONQ：下落4.44%。Corgiの新しいETFの発表が要因の1つとみられるが、直接的な原因は不明。\n- NBIS：下落5.92%。Andrey Korolenkoによる株式の売却やMeta Platformsのキャピタルエクスペンディチャーの増加が要因とみられる。\n- IREN：下落10.39%。Anthropicのデータセンタープロジェクトに関連する動きが要因の1つとみられるが、直接的な原因は不明。\n- SOFI：軽微な下落1.08%。SoFiの株価は、運用上の開発やレポートによるものではなく、市場の動向に影響された。\n\n### 🔍 今後の注目ポイント\n- IONQ：CorgiのETFの影響が今後の市場動向に与える影響。\n- NBIS：Meta Platformsのキャピタルエクスペンディチャー増加がNBISの株価に与える影響。\n- IREN：Anthropicのデータセンタープロジェクトの進展がIRENの株価に与える影響。"
+  "report": "### 📊 本日のサマリー\n本日は、SOFI、RKLB、IRENの3銘柄が大きな変動を見せた。SOFIは2.03%上昇、RKLBは7.34%下落、IRENは13.11%上昇した。\n\n### 📈 銘柄別分析\n- SOFI：2.03%上昇。原因は「Down 43%, Is SoFi Stock a Generational Buying Opportunity Right Now?」という記事で、SOFIの株価が低下していることから買い機会かもしれないと指摘されたことによる。\n- RKLB：7.34%下落。原因は「Why Rocket Lab Stock Is Plummeting Today」で、AIの評価や地政学的緊張により市場全体が売り込まれたこと、また中国のAI会社DeepSeekの動向が要因となった。\n- IREN：13.11%上昇。原因は「Why TeraWulf, IREN, and Other Data Center Stocks Jumped Today」で、TERAWULFがAI会社Anthropicと大型契約を結んだことや、IRENも同様の契約を検討しているとの報道が要因となった。\n\n軽微な変動の銘柄については、特記すべきニュースは見つからなかった。\n\n### 🔍 今後の注目ポイント\n- AI関連企業の動向とその影響\n- 地政学的緊張が市場に与える影響\n- データセンターとAIインフラストラクチャーの需要の動向"
 }
