@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-07",
-  "generated_at": "2026-07-07T22:06:04.019829Z",
+  "date": "2026-07-08",
+  "generated_at": "2026-07-08T22:55:45.205283Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、SOFI、RKLB、IRENの3銘柄が大きな変動を見せた。SOFIは2.03%上昇、RKLBは7.34%下落、IRENは13.11%上昇した。\n\n### 📈 銘柄別分析\n- SOFI：2.03%上昇。原因は「Down 43%, Is SoFi Stock a Generational Buying Opportunity Right Now?」という記事で、SOFIの株価が低下していることから買い機会かもしれないと指摘されたことによる。\n- RKLB：7.34%下落。原因は「Why Rocket Lab Stock Is Plummeting Today」で、AIの評価や地政学的緊張により市場全体が売り込まれたこと、また中国のAI会社DeepSeekの動向が要因となった。\n- IREN：13.11%上昇。原因は「Why TeraWulf, IREN, and Other Data Center Stocks Jumped Today」で、TERAWULFがAI会社Anthropicと大型契約を結んだことや、IRENも同様の契約を検討しているとの報道が要因となった。\n\n軽微な変動の銘柄については、特記すべきニュースは見つからなかった。\n\n### 🔍 今後の注目ポイント\n- AI関連企業の動向とその影響\n- 地政学的緊張が市場に与える影響\n- データセンターとAIインフラストラクチャーの需要の動向"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。IONQは7.18%下落、SOFIは4.62%下落、RKLBは10.40%下落、NBISは8.37%下落、IRENは9.33%下落した。\n\n### 📈 銘柄別分析\n- IONQ：7.18%下落。SeekingAlphaの記事「IonQ: The Hype Is Not Worth Chasing」が原因とみられる。\n- SOFI：4.62%下落。特定の原因となるニュースは見つからなかったため、「原因不明（関連ニュースなし）」。\n- RKLB：10.40%下落。The Motley Foolの記事「Better Space Stock to Buy Before 2026 Runs Out: SpaceX vs. Rocket Lab」やMorgan Stanleyによるターゲットプライスの設定などが要因とみられる。\n- NBIS：8.37%下落。The Motley Foolの記事「Missed Out on Nvidia's Historic Run? These 2 Winners Are Just Getting Started.」でNBISがAI投資の機会として言及されたが、直接の下落原因は不明。\n- IREN：9.33%下落。SeekingAlphaの記事「IREN's Revenue Is Falling For The Right Reason But Market Is Pricing It As Failure」が原因とみられる。\n\n### 🔍 今後の注目ポイント\n1. IONQのH2の見通しと収益の動向。\n2. RKLBのスペースエコノミーにおける競争力。\n3. NBISとIRENのAI関連事業の進展。"
 }
