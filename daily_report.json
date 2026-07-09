@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-08",
-  "generated_at": "2026-07-08T22:55:45.205283Z",
+  "date": "2026-07-09",
+  "generated_at": "2026-07-09T22:13:25.570905Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。IONQは7.18%下落、SOFIは4.62%下落、RKLBは10.40%下落、NBISは8.37%下落、IRENは9.33%下落した。\n\n### 📈 銘柄別分析\n- IONQ：7.18%下落。SeekingAlphaの記事「IonQ: The Hype Is Not Worth Chasing」が原因とみられる。\n- SOFI：4.62%下落。特定の原因となるニュースは見つからなかったため、「原因不明（関連ニュースなし）」。\n- RKLB：10.40%下落。The Motley Foolの記事「Better Space Stock to Buy Before 2026 Runs Out: SpaceX vs. Rocket Lab」やMorgan Stanleyによるターゲットプライスの設定などが要因とみられる。\n- NBIS：8.37%下落。The Motley Foolの記事「Missed Out on Nvidia's Historic Run? These 2 Winners Are Just Getting Started.」でNBISがAI投資の機会として言及されたが、直接の下落原因は不明。\n- IREN：9.33%下落。SeekingAlphaの記事「IREN's Revenue Is Falling For The Right Reason But Market Is Pricing It As Failure」が原因とみられる。\n\n### 🔍 今後の注目ポイント\n1. IONQのH2の見通しと収益の動向。\n2. RKLBのスペースエコノミーにおける競争力。\n3. NBISとIRENのAI関連事業の進展。"
+  "report": "### 📊 本日のサマリー\n本日はNBISとIRENが大きな変動を見せ、NBISは10.91%上昇、IRENは8.01%上昇した。軽微な変動の銘柄では、特記すべきニュースは見られなかった。\n\n### 📈 銘柄別分析\n- **NBIS**: 10.91%上昇。変動の原因としては、Metaのクラウドインフラストラクチャに関するニュースがAIインフラストラクチャ株に波及効果をもたらし、Nebius Groupの新しいAIオファリングやNasdaq 100への追加が評価された可能性が高い。\n- **IREN**: 8.01%上昇。変動の原因としては、Penguin Solutionsが競合他社と比較して低リスクのAIインフラストラクチャプレイと位置付けられていることや、IREN自身のAIプラットフォームの強化が評価された可能性がある。\n- **IONQ、SOFI、RKLB**: 軽微な変動で、特記すべきニュースは見られなかった。\n\n### 🔍 今後の注目ポイント\n1. AIインフラストラクチャ市場の動向と、Nebius GroupやIRENなどの主要企業の動き。\n2. Metaのクラウドインフラストラクチャに関する進展と、AIインフラストラクチャ株への影響。\n3. Penguin Solutionsの成長と、競合他社との比較における低リスクのAIインフラストラクチャプレイとしての評価。"
 }
