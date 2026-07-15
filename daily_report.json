@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-14",
-  "generated_at": "2026-07-14T22:46:40.665341Z",
+  "date": "2026-07-15",
+  "generated_at": "2026-07-15T22:47:57.250951Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。IONQは9.29%下落、SOFIは3.46%下落、RKLBは5.32%下落、NBISは4.16%下落、IRENは5.25%下落した。\n\n### 📈 銘柄別分析\n- IONQ：9.29%下落。原因不明（関連ニュースなし）\n- SOFI：3.46%下落。Whale Alertが発生したことが要因の1つとみられる。\n- RKLB：5.32%下落。CEOによる株式売却やスペースストックの売り方が要因とみられる。\n- NBIS：4.16%下落。Meta Platformsのクラウドコンピューティングサービス立ち上げ計画が要因とみられる。\n- IREN：5.25%下落。原因不明（関連ニュースなし）\n\n### 🔍 今後の注目ポイント\n1. メタプラットフォームズのクラウドコンピューティングサービス立ち上げ計画がNBISなどのクラウドコンピューティングプロバイダーに与える影響。\n2. スペースストックの動向とRKLBの将来的な成長可能性。\n3. Whale Alertの頻度と市場への影響。"
+  "report": "### 📊 本日のサマリー\n本日は、SOFI、RKLB、NBISの3銘柄が大きな変動を見せた。SOFIは上昇2.32%、RKLBは上昇2.71%、NBISは下落7.80%だった。\n\n### 📈 銘柄別分析\n- SOFI：上昇2.32%。The Motley Foolの記事「Should You Buy SoFi Stock Before July 29?」では、SoFi Technologiesの株価が今年大きく下落したものの、現在は23倍の将来の収益で取引されており、7月29日のQ2の収益発表前に買い入れを検討する価値があると指摘された。\n- RKLB：上昇2.71%。The Motley Foolの記事「Why Rocket Lab Stock Jumped 46% in the First Half of 2026 and Why It Could Rocket Even Higher」では、Rocket Labの株価が2026年上半期に46%上昇したことが報告され、将来の成長が期待できるとの見方が示された。\n- NBIS：下落7.80%。Yahooの記事「Meta Cloud Threat Sparks Nebius Stock Selloff Despite $1 Billion AI Deal」では、NebiusがReflection AIとの10億ドルの取引を発表したにもかかわらず、Metaのクラウドへの脅威が株価に影を落としたと伝えられた。\n\n軽微な変動の銘柄であるIRENについては、特記すべきニュースは見つからなかった。\n\n### 🔍 今後の注目ポイント\n- SOFIの7月29日のQ2の収益発表\n- RKLBの将来の成長とスペーステクノロジーへの投資の動向\n- NBISのAIクラウドビジネスへの影響とMetaの動向"
 }
