@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-15",
-  "generated_at": "2026-07-15T22:47:57.250951Z",
+  "date": "2026-07-16",
+  "generated_at": "2026-07-16T22:47:40.872855Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、SOFI、RKLB、NBISの3銘柄が大きな変動を見せた。SOFIは上昇2.32%、RKLBは上昇2.71%、NBISは下落7.80%だった。\n\n### 📈 銘柄別分析\n- SOFI：上昇2.32%。The Motley Foolの記事「Should You Buy SoFi Stock Before July 29?」では、SoFi Technologiesの株価が今年大きく下落したものの、現在は23倍の将来の収益で取引されており、7月29日のQ2の収益発表前に買い入れを検討する価値があると指摘された。\n- RKLB：上昇2.71%。The Motley Foolの記事「Why Rocket Lab Stock Jumped 46% in the First Half of 2026 and Why It Could Rocket Even Higher」では、Rocket Labの株価が2026年上半期に46%上昇したことが報告され、将来の成長が期待できるとの見方が示された。\n- NBIS：下落7.80%。Yahooの記事「Meta Cloud Threat Sparks Nebius Stock Selloff Despite $1 Billion AI Deal」では、NebiusがReflection AIとの10億ドルの取引を発表したにもかかわらず、Metaのクラウドへの脅威が株価に影を落としたと伝えられた。\n\n軽微な変動の銘柄であるIRENについては、特記すべきニュースは見つからなかった。\n\n### 🔍 今後の注目ポイント\n- SOFIの7月29日のQ2の収益発表\n- RKLBの将来の成長とスペーステクノロジーへの投資の動向\n- NBISのAIクラウドビジネスへの影響とMetaの動向"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBISの4銘柄が大きな変動を見せた。IONQは下落4.53%、SOFIは下落3.67%、RKLBは下落3.31%、NBISは上昇2.79%だった。\n\n### 📈 銘柄別分析\n- IONQ：下落4.53%。D-Wave Quantum Inc.のニュースが要因の1つとみられるが、IONQの下落の直接的な原因はニュースから特定できなかった。\n- SOFI：下落3.67%。SoFi Technologiesの顧客増加や成長への期待が報じられているが、下落の直接的な原因はニュースから特定できなかった。\n- RKLB：下落3.31%。Piper SandlerによるNeutralレーティングや、スペース株全体の下落が要因とみられる。\n- NBIS：上昇2.79%。Nebius GroupのAIクラウドプラットフォームの拡大や、新しいパートナーシップモデルが発表されたことが要因とみられる。\n\nIRENについては、軽微な変動（下落0.80%）で特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n- IONQとD-Wave Quantum Inc.の競争が進むか。\n- SOFIの顧客増加が成長に繋がるか。\n- RKLBのスペース株における競争がどのように進むか。"
 }
