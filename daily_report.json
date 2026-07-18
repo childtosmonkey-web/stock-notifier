@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-17",
-  "generated_at": "2026-07-17T22:39:05.724959Z",
+  "date": "2026-07-18",
+  "generated_at": "2026-07-18T22:38:16.922759Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。IONQとRKLBは下落し、SOFIも下落した。NBISは大幅な下落を見せ、IRENも下落した。\n\n### 📈 銘柄別分析\n- IONQ：下落6.42%。原因は、Quantum Stock Meltdownにより、IONZ、QBTZ、RGTZなどの逆ETFが上昇したことによる。\n- SOFI：下落3.08%。原因不明（関連ニュースなし）。\n- RKLB：下落11.61%。原因は、Piper Sandlerによる中立的な評価の開始や、SpaceXのStarshipの打ち上げ延期による。\n- NBIS：下落13.90%。原因は、Nebiusの株価が下落したことによるが、同社は775ミリオンドルの債務契約を発表し、株価は回復した。\n- IREN：下落9.01%。原因は、BakktのFY2025のGAAP収益が32.1%減少したことによる。\n\n### 🔍 今後の注目ポイント\n- Nebiusの775ミリオンドルの債務契約がAIクラウドの拡大にどのような影響を与えるか。\n- SpaceXのStarshipの打ち上げ延期がRKLBの株価に与える影響。\n- IONQのQuantum Stock Meltdownが将来の株価に与える影響。"
+  "report": "### 📊 本日のサマリー\n本日はNBISとIRENが大きな変動を見せた。NBISは上昇3.46%、IRENは下落3.47%だった。\n\n### 📈 銘柄別分析\n- NBIS：上昇3.46%。MetaとAnthropicの間で10億ドルのAIインフラストラクチャ契約が話し合われていることが報じられた。\n- IREN：下落3.47%。原因不明（関連ニュースなし）。\n- RKLB：軽微な上昇0.40%。Rocket Labは打ち上げインフラを拡大してより頻繁なミッションをサポートすることを発表した。\n\n### 🔍 今後の注目ポイント\n- MetaとAnthropicのAIインフラストラクチャ契約の進展。\n- Rocket Labの打ち上げインフラ拡大が将来のミッションに与える影響。\n- 世界的なスペースエコノミーの成長とその影響を受ける企業の動向。"
 }
