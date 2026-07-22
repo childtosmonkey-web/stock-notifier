@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-21",
-  "generated_at": "2026-07-21T22:45:11.226001Z",
+  "date": "2026-07-22",
+  "generated_at": "2026-07-22T22:51:37.740074Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、RKLB、NBIS、IRENの3銘柄が大きな変動を見せた。RKLBは2.78%の下落、NBISは2.76%の上昇、IRENは19.57%の上昇であった。\n\n### 📈 銘柄別分析\n- RKLB：2.78%の下落。Rocket Lab CEOの発言やSpaceXのIPOの影響が要因とみられる。\n- NBIS：2.76%の上昇。Nvidiaが9.3%の株式を取得したことが要因とみられる。\n- IREN：19.57%の上昇。新規顧客契約やAI Cloudの年間収益予測の引き上げが要因とみられる。\n\nIONQとSOFIは軽微な変動にとどまり、特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n- RKLBのNeutronロケットの開発進捗\n- NBISのNvidiaとの提携の進展\n- IRENのAI Cloud事業の成長状況"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。特にNBISは18.78%の上昇を見せた。\n\n### 📈 銘柄別分析\n- IONQ：上昇3.71%。The Motley Foolの記事で、IonQとQuantinuumがトラップドアイオンテクノロジーで高い精度（99.99%と99.92%）を達成していることが報じられた。\n- SOFI：上昇3.70%。The Motley Foolの記事で、JPMorgan ChaseとGoldman Sachsの強い業績が小規模銀行のSoFiにもプラスに作用する可能性が指摘された。\n- RKLB：上昇5.14%。Rocket Labが266ミリオンドルのロケット契約を獲得したことが報じられた。\n- NBIS：上昇18.78%。BairdのアナリストがCoreWeaveとNebiusに対してブルッシュコールを行ったことが報じられた。\n- IREN：上昇2.71%。HC Wainwright & Co.のアナリストがIRENのプライスターゲットを85ドルから90ドルに引き上げたことが報じられた。\n\n### 🔍 今後の注目ポイント\n- IONQとQuantinuumのトラップドアイオンテクノロジーの進展が注目される。\n- SOFIの業績がJPMorgan ChaseとGoldman Sachsの強い業績に連動するかどうかが注目される。\n- RKLBのロケット契約獲得が将来の業績に与える影響が注目される。"
 }
