@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-22",
-  "generated_at": "2026-07-22T22:51:37.740074Z",
+  "date": "2026-07-23",
+  "generated_at": "2026-07-23T22:46:44.033287Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。特にNBISは18.78%の上昇を見せた。\n\n### 📈 銘柄別分析\n- IONQ：上昇3.71%。The Motley Foolの記事で、IonQとQuantinuumがトラップドアイオンテクノロジーで高い精度（99.99%と99.92%）を達成していることが報じられた。\n- SOFI：上昇3.70%。The Motley Foolの記事で、JPMorgan ChaseとGoldman Sachsの強い業績が小規模銀行のSoFiにもプラスに作用する可能性が指摘された。\n- RKLB：上昇5.14%。Rocket Labが266ミリオンドルのロケット契約を獲得したことが報じられた。\n- NBIS：上昇18.78%。BairdのアナリストがCoreWeaveとNebiusに対してブルッシュコールを行ったことが報じられた。\n- IREN：上昇2.71%。HC Wainwright & Co.のアナリストがIRENのプライスターゲットを85ドルから90ドルに引き上げたことが報じられた。\n\n### 🔍 今後の注目ポイント\n- IONQとQuantinuumのトラップドアイオンテクノロジーの進展が注目される。\n- SOFIの業績がJPMorgan ChaseとGoldman Sachsの強い業績に連動するかどうかが注目される。\n- RKLBのロケット契約獲得が将来の業績に与える影響が注目される。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQとSOFIの2銘柄が大きな変動を見せた。IONQは2.34%の下落、SOFIは3.23%の下落となった。\n\n### 📈 銘柄別分析\n- IONQ：2.34%の下落。The Motley Foolの記事「Quantum Computing Stocks Are Falling. Should You Buy IonQ or D-Wave, or Just Stick With Nvidia?」やJim Cramerの発言「IonQは利上げ時に保有するのは難しい」が要因の1つとみられる。\n- SOFI：3.23%の下落。直接の原因となるニュースは見つからなかったため、「原因不明（関連ニュースなし）」。\n\n軽微な変動の銘柄では、RKLBについてはSpaceXのニュースが注目されたが、直接的な影響は見られなかった。\n\n### 🔍 今後の注目ポイント\n- Quantum Computing関連の動向がIONQの株価に与える影響。\n- SOFIの将来的な財務状況と業績の回復可能性。\n- NvidiaのNBISへの出資がもたらす影響とAI関連株への波及効果。"
 }
