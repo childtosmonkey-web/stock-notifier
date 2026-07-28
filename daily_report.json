@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-27",
-  "generated_at": "2026-07-27T22:03:34.117039Z",
+  "date": "2026-07-28",
+  "generated_at": "2026-07-28T22:50:17.751278Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、RKLB、NBIS、IRENの4銘柄が大きな変動を見せた。IONQは下落3.61%、RKLBは下落8.69%、NBISは下落15.02%、IRENは下落8.65%だった。\n\n### 📈 銘柄別分析\n- IONQ：下落3.61%。変動の原因は、特定のニュースが見つからなかったため「原因不明（関連ニュースなし）」。\n- RKLB：下落8.69%。変動の原因は、US Space Forceとの大型契約の発表によるもの。\n- NBIS：下落15.02%。変動の原因は、NvidiaのOpenAIへの出資計画やNebius Groupへの9.3%出資など、Nvidia関連のニュース。\n- IREN：下落8.65%。変動の原因は「原因不明（関連ニュースなし）」。\n\n### 🔍 今後の注目ポイント\n- NvidiaのAI関連出資計画が進むか。\n- RKLBのUS Space Forceとの契約が将来の業績に与える影響。\n- NBISのNvidiaとの関係が将来の株価に与える影響。"
+  "report": "### 📊 本日のサマリー\n本日はIONQ、SOFI、RKLB、IRENの4銘柄が大きな変動を見せた。IONQは9.38%上昇、SOFIは2.55%上昇、RKLBは4.74%上昇、IRENは2.10%下落した。\n\n### 📈 銘柄別分析\n- IONQ：9.38%上昇。原因は「What A Big Week In Trapped-Ion Quantum Computing Actually Means」というニュースによるものとみられる。\n- SOFI：2.55%上昇。原因不明（関連ニュースなし）。\n- RKLB：4.74%上昇。Rocket LabがSpace Forceから266万ドルの打ち上げ契約を獲得したことが要因のひとつとみられる。\n- IREN：2.10%下落。原因不明（関連ニュースなし）。\n\nNBISは0.06%上昇したが、特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n- IONQ：量子コンピューティング分野の進展が今後も注目される。\n- RKLB：Space Forceとの契約が将来の成長に寄与するかどうかが焦点となる。\n- 量子コンピューティングと宇宙関連株の動向が今後も注目される。"
 }
