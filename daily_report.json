@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-03",
-  "generated_at": "2026-08-03T22:50:00.530471Z",
+  "date": "2026-08-04",
+  "generated_at": "2026-08-04T22:11:49.541863Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日はIRENが3.82%の下落を見せ、大きな変動があった。IRENの下落の原因は不明である。\n\n### 📈 銘柄別分析\n- IREN：3.82%の下落。原因不明（関連ニュースなし）\n- IONQ：1.87%の上昇。Wedbushのアウトパフォーム評価と75ドルのプライスターゲットの維持により上昇した。\n- SOFI、RKLB、NBISは軽微な変動のみで特記すべきニュースはなかった。\n\n### 🔍 今後の注目ポイント\n- IRENの下落の原因が明らかになるかどうか。\n- IONQのQ2の業績発表が予想通りいかどうか。\n- SpaceXの初の四半期収益発表が市場に与える影響。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。特に、NBISは11.64%の上昇を見せた。\n\n### 📈 銘柄別分析\n- IONQ：6.61%の上昇。原因は、Quantum Stocks Bounce Back Unevenly as Speculative Pure-Plays Lead and Profitable Names Lagとの関連が見られる。\n- SOFI：10.55%の上昇。原因は、SoFiのQ2更新でTech Platform revenueが13%増加したことによる。\n- RKLB：8.44%の上昇。原因は、SpaceXのデビュー公表によるスペース関連株の上昇との関連が見られる。\n- NBIS：11.64%の上昇。原因は、Nvidia-Backed StockがMajor Vote of Confidenceを受けたことによる。\n- IREN：8.02%の上昇。原因不明（関連ニュースなし）。\n\n### 🔍 今後の注目ポイント\n- SpaceXのデビュー公表によるスペース関連株の動向。\n- SoFiの次のラリーがどのように進むか。\n- Nebius GroupのExecution riskがどのように影響するか。"
 }
