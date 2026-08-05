@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-04",
-  "generated_at": "2026-08-04T22:11:49.541863Z",
+  "date": "2026-08-05",
+  "generated_at": "2026-08-05T22:05:33.381205Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。特に、NBISは11.64%の上昇を見せた。\n\n### 📈 銘柄別分析\n- IONQ：6.61%の上昇。原因は、Quantum Stocks Bounce Back Unevenly as Speculative Pure-Plays Lead and Profitable Names Lagとの関連が見られる。\n- SOFI：10.55%の上昇。原因は、SoFiのQ2更新でTech Platform revenueが13%増加したことによる。\n- RKLB：8.44%の上昇。原因は、SpaceXのデビュー公表によるスペース関連株の上昇との関連が見られる。\n- NBIS：11.64%の上昇。原因は、Nvidia-Backed StockがMajor Vote of Confidenceを受けたことによる。\n- IREN：8.02%の上昇。原因不明（関連ニュースなし）。\n\n### 🔍 今後の注目ポイント\n- SpaceXのデビュー公表によるスペース関連株の動向。\n- SoFiの次のラリーがどのように進むか。\n- Nebius GroupのExecution riskがどのように影響するか。"
+  "report": "### 📊 本日のサマリー\n本日は、IONQ、SOFI、RKLB、NBIS、IRENの5銘柄が大きな変動を見せた。特に、RKLBはSpace Forceとの397ミリオンドルの契約を獲得し、上昇した。\n\n### 📈 銘柄別分析\n- IONQ: 上昇7.39%、原因不明（関連ニュースなし）\n- SOFI: 上昇3.72%、SoFiのQ2の強い業績とアナリストの支持が要因とみられる。\n- RKLB: 上昇5.75%、Space Forceとの397ミリオンドルの契約獲得が要因。\n- NBIS: 上昇6.19%、Nebius GroupのCMOへの人事やアナリストの買い推奨が要因とみられる。\n- IREN: 上昇2.77%、原因不明（関連ニュースなし）\n\n### 🔍 今後の注目ポイント\n- RKLBのSpace Forceとの契約が将来の業績に与える影響。\n- SOFIのQ2の業績が将来の株価に与える影響。\n- NBISのAI関連事業の進展が将来の株価に与える影響。"
 }
