@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-12",
-  "generated_at": "2026-08-12T22:30:09.946220Z",
+  "date": "2026-08-13",
+  "generated_at": "2026-08-13T22:30:57.395658Z",
   "tickers": [
     "IONQ",
     "SOFI",
@@ -8,5 +8,5 @@
     "NBIS",
     "IREN"
   ],
-  "report": "### 📊 本日のサマリー\n本日はIONQ、NBIS、IRENの3銘柄が大きな変動を見せた。IONQは2.14%上昇、NBISは4.95%上昇、IRENは2.61%上昇した。\n\n### 📈 銘柄別分析\n- IONQ：2.14%上昇。The Motley Foolの記事で、IonQのQ2収益が年間287%増加し、8億ドルの収益と48.5億ドルの受注残高を達成したことが報じられた。\n- NBIS：4.95%上昇。Nebius Group N.V.のQ2収益が強固なEBITDAマージンとGPU利用率を示したことがSeekingAlphaの記事で報じられた。\n- IREN：2.61%上昇。CoreWeave Inc.とNebius Group N.V.の好調な四半期収益が人工知能インフラセクターの気配を高めたことがBenzingaの記事で報じられた。\n\n### 🔍 今後の注目ポイント\n- 人工知能インフラセクターの収益成長が続くか。\n- IONQの収益増加が継続するか。\n- NBISとIRENのEBITDAマージンとGPU利用率が今後どうなるか。"
+  "report": "### 📊 本日のサマリー\n本日はIONQ、NBIS、IRENの3銘柄が大きな変動を見せた。IONQは4.05%上昇、NBISは34.14%上昇、IRENは9.86%上昇した。\n\n### 📈 銘柄別分析\n- IONQ：4.05%上昇。原因不明（関連ニュースなし）\n- NBIS：34.14%上昇。Nebius Groupの好調な業績やAI関連株の伸びにより上昇した。\n- IREN：9.86%上昇。MicrosoftへのAIコンピュートデプロイメントの初回納入により上昇した。\n- RKLB：軽微な変動。Rocket Labのイリジウム社への買収やHSR期間の終了がニュースとなった。\n\n### 🔍 今後の注目ポイント\n- AI関連株の動向が今後も注目される。\n- IRENのMicrosoftとの契約が将来の業績に与える影響。\n- Nebius GroupのAIインフラストラクチャへの取り組みが将来の成長に繋がるか。"
 }
